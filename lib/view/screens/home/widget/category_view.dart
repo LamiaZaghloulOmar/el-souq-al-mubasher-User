@@ -412,73 +412,73 @@ class _CategoryViewState extends State<CategoryView> {
           height: 20,
         ),
 
-        Divider(),
-        Text(
-          "المنتجات الاكثر مشاهدة",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-        ),
-        Container(
-            height: 300,
-            // color: Colors.red,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width / 2.1,
-                    color: Colors.white,
-                    margin: EdgeInsets.all(5),
-                    child: Column(children: [
-                      Container(
-                        height: 180,
-                        // color: Colors.black,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                'https://z.nooncdn.com/products/tr:n-t_240/v1668154732/N43087236V_1.jpg'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        // child: Image.network('https://z.nooncdn.com/products/tr:n-t_240/v1668154732/N43087236V_1.jpg',
-                        // fit: BoxFit.cover,)
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "ثريدز باي اجوني",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("فستان متوسط متوسط "),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("250 \$"),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            "250 \$",
-                            style: TextStyle(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.grey),
-                          ),
-                        ],
-                      )
-                    ]),
-                  );
-                })),
-        SizedBox(
-          height: 30,
-        )
+        // Divider(),
+        // Text(
+        //   "المنتجات الاكثر مشاهدة",
+        //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        // ),
+        // Container(
+        //     height: 300,
+        //     // color: Colors.red,
+        //     child: ListView.builder(
+        //         scrollDirection: Axis.horizontal,
+        //         itemCount: 5,
+        //         itemBuilder: (context, index) {
+        //           return Container(
+        //             width: MediaQuery.of(context).size.width / 2.1,
+        //             color: Colors.white,
+        //             margin: EdgeInsets.all(5),
+        //             child: Column(children: [
+        //               Container(
+        //                 height: 180,
+        //                 // color: Colors.black,
+        //                 decoration: BoxDecoration(
+        //                   image: DecorationImage(
+        //                     image: NetworkImage(
+        //                         'https://z.nooncdn.com/products/tr:n-t_240/v1668154732/N43087236V_1.jpg'),
+        //                     fit: BoxFit.cover,
+        //                   ),
+        //                 ),
+        //                 // child: Image.network('https://z.nooncdn.com/products/tr:n-t_240/v1668154732/N43087236V_1.jpg',
+        //                 // fit: BoxFit.cover,)
+        //               ),
+        //               SizedBox(
+        //                 height: 10,
+        //               ),
+        //               Text(
+        //                 "ثريدز باي اجوني",
+        //                 style: TextStyle(
+        //                     fontWeight: FontWeight.bold, fontSize: 16),
+        //               ),
+        //               SizedBox(
+        //                 height: 10,
+        //               ),
+        //               Text("فستان متوسط متوسط "),
+        //               SizedBox(
+        //                 height: 10,
+        //               ),
+        //               Row(
+        //                 crossAxisAlignment: CrossAxisAlignment.center,
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   Text("250 \$"),
+        //                   SizedBox(
+        //                     width: 20,
+        //                   ),
+        //                   Text(
+        //                     "250 \$",
+        //                     style: TextStyle(
+        //                         decoration: TextDecoration.lineThrough,
+        //                         color: Colors.grey),
+        //                   ),
+        //                 ],
+        //               )
+        //             ]),
+        //           );
+        //         })),
+        // SizedBox(
+        //   height: 30,
+        // )
       ],
     );
   }

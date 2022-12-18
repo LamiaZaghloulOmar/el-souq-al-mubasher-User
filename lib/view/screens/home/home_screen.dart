@@ -19,6 +19,8 @@ import 'package:efood_multivendor/view/screens/home/advertise_screen.dart';
 import 'package:efood_multivendor/view/screens/home/web_home_screen.dart';
 import 'package:efood_multivendor/view/screens/home/widget/banner_view.dart';
 import 'package:efood_multivendor/view/screens/home/widget/category_view.dart';
+import 'package:efood_multivendor/view/screens/home/widget/popular_food_view.dart';
+import 'package:efood_multivendor/view/screens/home/widget/popular_restaurant_view.dart';
 import 'package:efood_multivendor/view/screens/posts/all_users.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -597,21 +599,20 @@ Spacer(),
                                     //       : campaignController.itemCampaignList.length == 0 ? SizedBox() : ItemCampaignView(campaignController: campaignController);
                                     // }),
 
-                                    // _configModel.popularFood == 1 ? GetBuilder<ProductController>(builder: (productController) {
-                                    //   return productController.popularProductList == null ? PopularFoodView(productController: productController, isPopular: true)
-                                    //       : productController.popularProductList.length == 0 ? SizedBox() : PopularFoodView(productController: productController, isPopular: true);
-                                    // }) : SizedBox(),
+                                    _configModel.popularFood == 1 ? GetBuilder<ProductController>(builder: (productController) {
+                                      return productController.popularProductList == null ? PopularFoodView(productController: productController, isPopular: true)
+                                          : productController.popularProductList.length == 0 ? SizedBox() : PopularFoodView(productController: productController, isPopular: true);
+                                    }) : SizedBox(),
 
                                     // _configModel.newRestaurant == 1 ? GetBuilder<RestaurantController>(builder: (restController) {
                                     //   return restController.latestRestaurantList == null ? PopularRestaurantView(restController: restController, isPopular: false)
                                     //       : restController.latestRestaurantList.length == 0 ? SizedBox() : PopularRestaurantView(restController: restController, isPopular: false);
                                     // }) : SizedBox(),
 
-                                    // _configModel.mostReviewedFoods == 1 ? GetBuilder<ProductController>(builder: (productController) {
-                                    //   return productController.reviewedProductList == null ? PopularFoodView(productController: productController, isPopular: false)
-                                    //       : productController.reviewedProductList.length == 0 ? SizedBox() : PopularFoodView(productController: productController, isPopular: false);
-                                    // }) : SizedBox(),
-
+                                    _configModel.mostReviewedFoods == 1 ? GetBuilder<ProductController>(builder: (productController) {
+                                      return productController.reviewedProductList == null ? PopularFoodView(productController: productController, isPopular: false)
+                                          : productController.reviewedProductList.length == 0 ? SizedBox() : PopularFoodView(productController: productController, isPopular: false);
+                                    }) : SizedBox(),
                                     // Padding(
                                     //   padding: EdgeInsets.fromLTRB(10, 15, 0, 5),
                                     //   child: GetBuilder<RestaurantController>(builder: (restaurantController) {
@@ -645,6 +646,7 @@ Spacer(),
                                     //   }),
                                     // ),
                                     // RestaurantView(scrollController: _scrollController),
+ SizedBox(height: 40,),
                                   ]))),
                     ),
                   ],

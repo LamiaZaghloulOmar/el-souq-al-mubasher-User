@@ -11,10 +11,12 @@ class PriceConverter {
       }
     }
     bool _isRightSide = Get.find<SplashController>().configModel.currencySymbolDirection == 'right';
-    return '${_isRightSide ? '' : Get.find<SplashController>().configModel.currencySymbol+' '}'
+    return 
         '${(price).toStringAsFixed(Get.find<SplashController>().configModel.digitAfterDecimalPoint)
         .replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}'
-        '${_isRightSide ? ' '+Get.find<SplashController>().configModel.currencySymbol : ''}';
+        '${_isRightSide ? ' '+Get.find<SplashController>().configModel.currencySymbol : ''}'
+        ' '
+        '${_isRightSide ? '' : Get.find<SplashController>().configModel.currencySymbol+' '}';
   }
 
 

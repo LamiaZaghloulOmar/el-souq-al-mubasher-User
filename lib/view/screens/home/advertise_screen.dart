@@ -74,7 +74,7 @@ class _AdvertiseScreenState extends State<AdvertiseScreen> {
 
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(5)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
@@ -117,6 +117,7 @@ class _AdvertiseScreenState extends State<AdvertiseScreen> {
                             // ),
                             InkWell(
                               child: Container(
+                                margin: EdgeInsets.only(left: 5,right: 5),
                                 width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.white),
@@ -139,6 +140,7 @@ class _AdvertiseScreenState extends State<AdvertiseScreen> {
                                     ? Icon(
                                         Icons.image,
                                         size: 50,
+                                        color: Theme.of(context).cardColor,
                                       )
                                     :Container(
                                       height: 40,
@@ -189,6 +191,8 @@ class _AdvertiseScreenState extends State<AdvertiseScreen> {
                             ),
                             GetBuilder<LocationController>(
                                 builder: (locationController) {
+                                  if(locationController.addressList.isNotEmpty)
+                                  id = locationController .addressList[  0] .id .toString();
                               return locationController.addressList != null
                                   ? locationController.addressList.length > 0
                                       ? RefreshIndicator(

@@ -46,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
     _countryDialCode =
         Get.find<AuthController>().getUserCountryCode().isNotEmpty
             ? Get.find<AuthController>().getUserCountryCode()
-            : '966'
+            : 'Sa'
             // CountryCode.fromCountryCode(
             //         Get.find<SplashController>().configModel.country)
             //     .dialCode
@@ -90,18 +90,18 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       },
       child: Scaffold(
-        appBar: ResponsiveHelper.isDesktop(context)
-            ? WebMenuBar()
-            : !widget.exitFromApp
-                ? AppBar(
-                    leading: IconButton(
-                      onPressed: () => Get.back(),
-                      icon: Icon(Icons.arrow_back_ios_rounded,
-                          color: Theme.of(context).textTheme.bodyText1.color),
-                    ),
-                    elevation: 0,
-                    backgroundColor: Colors.transparent)
-                : null,
+        // appBar: ResponsiveHelper.isDesktop(context)
+        //     ? WebMenuBar()
+        //     : !widget.exitFromApp
+        //         ? AppBar(
+        //             leading: IconButton(
+        //               onPressed: () => Get.back(),
+        //               icon: Icon(Icons.arrow_back_ios_rounded,
+        //                   color: Theme.of(context).cardColor),
+        //             ),
+        //             elevation: 0,
+        //             backgroundColor: Theme.of(context).primaryColor)
+        //         : null,
         body: SafeArea(
             child: Container(
           decoration: BoxDecoration(
@@ -145,7 +145,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         Text('sign_in'.tr.toUpperCase(),
                             style: robotoBlack.copyWith(
-                                fontSize: 30, color: Colors.white)),
+                                fontSize: 25, color: Colors.white)),
                         SizedBox(height: 50),
 
                         Container(
@@ -162,7 +162,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ],
                           ),
                           child: Column(children: [
-                            Row(children: [
+                            Row(children: [ 
                               CodePickerWidget(
                                 onChanged: (CountryCode countryCode) {
                                   _countryDialCode = countryCode.dialCode;
@@ -172,7 +172,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     : Get.find<LocalizationController>()
                                         .locale
                                         .countryCode,
-                                favorite: [_countryDialCode],
+                                favorite: [_countryDialCode,'YE','EG'],
                                 showDropDownButton: true,
                                 padding: EdgeInsets.zero,
                                 showFlagMain: true,
@@ -242,14 +242,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextButton(
                             onPressed: () => Get.toNamed(
                                 RouteHelper.getForgotPassRoute(false, null)),
-                            child: Text('${'forgot_password'.tr}?'),
+                            child: Text('${'forgot_password'.tr}?',style: TextStyle(color: Theme.of(context).cardColor),),
                           ),
                         ]),
                         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                         ConditionCheckBox(authController: authController),
                         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
+SizedBox(height:10),
                         !authController.isLoading
                             ? Row(children: [
                                 Expanded(

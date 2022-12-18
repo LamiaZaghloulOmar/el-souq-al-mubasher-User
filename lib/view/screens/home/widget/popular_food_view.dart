@@ -40,7 +40,7 @@ class PopularFoodView extends StatelessWidget {
         ),
 
         SizedBox(
-          height: 90,
+          height: 100,
           child: _foodList != null ? ListView.builder(
             controller: _scrollController,
             physics: BouncingScrollPhysics(),
@@ -89,7 +89,9 @@ class PopularFoodView extends StatelessWidget {
                       Stack(children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                          child: CustomImage(
+                          child:_foodList[index].image==null?
+                          CustomImage(image:'https://www.chanchao.com.tw/images/default.jpg', height: 80, width: 70, fit: BoxFit.cover,):
+                           CustomImage(
                             image: '${Get.find<SplashController>().configModel.baseUrls.productImageUrl}'
                                 '/${_foodList[index].image}',
                             height: 80, width: 70, fit: BoxFit.cover,
@@ -145,7 +147,7 @@ class PopularFoodView extends StatelessWidget {
                                     )) : SizedBox(),
                                   ]),
                                 ),
-                                Icon(Icons.add, size: 20),
+                                // Icon(Icons.add, size: 20),
                               ],
                             ),
                           ]),

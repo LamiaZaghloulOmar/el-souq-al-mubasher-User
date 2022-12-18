@@ -73,7 +73,7 @@ class PopularRestaurantView extends StatelessWidget {
                       Stack(children: [
                         ClipRRect(
                           borderRadius: BorderRadius.vertical(top: Radius.circular(Dimensions.RADIUS_SMALL)),
-                          child: CustomImage(
+                          child:_restaurantList[index].coverPhoto==null? CustomImage(image:'https://www.chanchao.com.tw/images/default.jpg', height: 80, width: 70, fit: BoxFit.cover,):CustomImage(
                             image: '${Get.find<SplashController>().configModel.baseUrls.restaurantCoverPhotoUrl}'
                                 '/${_restaurantList[index].coverPhoto}',
                             height: 90, width: 200, fit: BoxFit.cover,

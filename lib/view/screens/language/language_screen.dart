@@ -46,7 +46,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(child: Image.asset(Images.logo, width: 100)),
+                            Center(child: Image.asset(Images.logo, width: 150)),
                             SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                             // Center(child: Image.asset(Images.logo_name, width: 100)),
 
@@ -63,7 +63,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                                   )),
                             ),
                             SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-
+SizedBox(height:5),
                             GridView.builder(
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
@@ -73,7 +73,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                                         : ResponsiveHelper.isTab(context)
                                             ? 3
                                             : 2,
-                                childAspectRatio: (1 / 1),
+                                childAspectRatio: (1.2 / 1),
                               ),
                               itemCount: localizationController.languages.length,
                               physics: NeverScrollableScrollPhysics(),
@@ -119,6 +119,7 @@ class ChooseLanguageScreen extends StatelessWidget {
                   }
                 },
               ),
+              SizedBox(height: 20,)
             ]),
           );
         }),

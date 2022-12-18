@@ -92,18 +92,22 @@ class ProductWidget extends StatelessWidget {
         }
       },
       child: Container(
+        margin: EdgeInsets.all(5),
         padding: ResponsiveHelper.isDesktop(context)
             ? EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL)
             : null,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-          color: ResponsiveHelper.isDesktop(context)
-              ? Theme.of(context).cardColor
-              : null,
+          color: 
+          // ResponsiveHelper.isDesktop(context)
+              // ?
+               Theme.of(context).cardColor
+              // : null
+              ,
           boxShadow: ResponsiveHelper.isDesktop(context)
               ? [
                   BoxShadow(
-                    color: Colors.grey[Get.isDarkMode ? 700 : 300],
+                    color: Colors.blue[Get.isDarkMode ? 700 : 300],
                     spreadRadius: 1,
                     blurRadius: 5,
                   )
@@ -124,7 +128,7 @@ class ProductWidget extends StatelessWidget {
                         '${isCampaign ? _baseUrls.campaignImageUrl : isRestaurant ? _baseUrls.restaurantImageUrl : _baseUrls.productImageUrl}'
                         '/${isRestaurant ? restaurant.logo : product.image}',
                     height: _desktop ? 120 : 150,
-                    width: _desktop ? 120 : 150,
+                    width: _desktop ? 120 : 180,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -143,6 +147,7 @@ class ProductWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 5,),
                       Text(
                         isRestaurant ? restaurant.name : product.name,
                         style: robotoMedium.copyWith(
@@ -205,7 +210,7 @@ class ProductWidget extends StatelessWidget {
                                   SizedBox(
                                       width: _discount > 0
                                           ? Dimensions.PADDING_SIZE_EXTRA_SMALL
-                                          : 0),
+                                          : 3),
                                   _discount > 0
                                       ? Text(
                                           PriceConverter.convertPrice(
@@ -273,15 +278,15 @@ class ProductWidget extends StatelessWidget {
               //     ]),
             ]),
           )),
-          _desktop
-              ? SizedBox()
-              : Padding(
-                  padding: EdgeInsets.only(left: _desktop ? 130 : 15),
-                  child: Divider(
-                      color: index == length - 1
-                          ? Colors.transparent
-                          : Theme.of(context).disabledColor),
-                ),
+          // _desktop
+          //     ? SizedBox()
+          //     : Padding(
+          //         padding: EdgeInsets.only(left: _desktop ? 130 : 15),
+          //         child: Divider(
+          //             color: index == length - 1
+          //                 ? Colors.transparent
+          //                 : Theme.of(context).disabledColor),
+          //       ),
         ]),
       ),
     );

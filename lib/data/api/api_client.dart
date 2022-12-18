@@ -55,6 +55,7 @@ class ApiClient extends GetxService {
   Future<Response> getData(String uri,
       {Map<String, dynamic> query, Map<String, String> headers}) async {
     try {
+      print("====> API Calllllllllllllllllllllll: ${appBaseUrl + uri}");
       debugPrint('====> API Call: $uri\nHeader: $_mainHeaders');
       Http.Response _response = await Http.get(
         Uri.parse(appBaseUrl + uri),

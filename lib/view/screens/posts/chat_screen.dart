@@ -62,16 +62,17 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget mineMessage(String text) => Align(
         child: Container(
+           margin: EdgeInsets.only(top: 4),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(text,style: TextStyle(color: Colors.white)),
           ),
           decoration: BoxDecoration(
-            color: Colors.lightBlue,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25),
+              topLeft: Radius.circular(25),
             ),
           ),
         ),
@@ -80,7 +81,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget otherMessage(String text) => Align(
         child: Container(
+          margin: EdgeInsets.only(top: 4),
           child: Padding(
+             
             padding: const EdgeInsets.all(15.0),
             child: Text(text),
           ),
@@ -89,7 +92,7 @@ class _ChatScreenState extends State<ChatScreen> {
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
-              bottomRight: Radius.circular(25),
+              bottomLeft: Radius.circular(25),
             ),
           ),
         ),
@@ -97,9 +100,11 @@ class _ChatScreenState extends State<ChatScreen> {
       );
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Scaffold(
+    return 
+    // Directionality(
+      // textDirection: TextDirection.ltr,
+      // child:
+       Scaffold(
           appBar: CustomAppBar(title: widget.name),
           body: Column(children: [
             StreamBuilder(
@@ -127,7 +132,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         print(snapshot.connectionState);
                         return Center(
                           child: Container(
-                            child: Text("No Message"),
+                            child: Text("لا يوجد رسالة"),
                           ),
                         );
                       }
@@ -149,14 +154,14 @@ class _ChatScreenState extends State<ChatScreen> {
                         Expanded(
                             child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "    Write your Message...",
+                            hintText: "     اكتب رسالتك",
                             contentPadding: EdgeInsets.only(left: 15),
                             border: InputBorder.none,
                           ),
                           controller: textController,
                         )),
                         Container(
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           child: IconButton(
                             icon: Icon(Icons.send,color: Colors.white),
                             onPressed: () async {
@@ -169,7 +174,8 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ]),
                 ))
-          ])),
+          ])
+          // ),
     );
   }
 }

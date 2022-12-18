@@ -8,7 +8,7 @@ class GuestButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        minimumSize: Size(1, 40),
+        minimumSize: Size(1, 40), 
       ),
       onPressed: () {
         Navigator.pushReplacementNamed(context, RouteHelper.getInitialRoute());

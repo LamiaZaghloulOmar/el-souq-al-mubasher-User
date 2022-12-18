@@ -38,16 +38,26 @@ class _AllUsersScreenState extends State<AllUsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Chats"),
+      appBar: CustomAppBar(title: "الرسائل", isBackButtonExist: true),
       body: users.isEmpty
           ? Center(
-              child: Text("No Messages"),
+              child: Text("لا يوجد رسائل"),
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
                   itemCount: users.length,
-                  itemBuilder: (context, index) => InkWell(
+                   itemBuilder: (context, index) =>  Container( 
+                    margin: EdgeInsets.only(bottom: 10,left: 5,right: 5),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                                            color: Theme.of(context).cardColor,
+                                          border: Border.all(
+                                          width: 0.5,
+                                          color: Theme.of(context).primaryColor),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                 child:   InkWell(
                         onTap: () {
                           Get.to(ChatScreen(
                             name: users[index]["ServiceName"],
@@ -82,16 +92,16 @@ class _AllUsersScreenState extends State<AllUsersScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            Divider(
-                              color: Colors.black,
-                              thickness: 0.5,
-                              height: 1,
-                              indent: 20,
-                              endIndent: 20,
-                            )
+                            // Divider(
+                            //   color: Colors.black,
+                            //   thickness: 0.5,
+                            //   height: 1,
+                            //   indent: 20,
+                            //   endIndent: 20,
+                            // )
                           ],
                         ),
-                      )),
+                      ))),
             ),
     );
   }

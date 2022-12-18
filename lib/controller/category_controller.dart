@@ -105,7 +105,7 @@ class CategoryController extends GetxController implements GetxService {
   Future<void> getCategoryList(bool reload) async {
     if (_categoryList == null || reload) {
       Response response = await categoryRepo.getCategoryList();
-      print("Muhammed+ ${response.body}");
+      print("Response+ ${response.body}");
       if (response.statusCode == 200) {
         _categoryList = [];
         _interestSelectedList = [];

@@ -27,7 +27,7 @@ class ConditionCheckBox extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
           child: Text('terms_conditions'.tr,
-              style: robotoMedium.copyWith(color: Colors.blue)),
+              style: robotoMedium.copyWith(fontWeight: FontWeight.bold)),
         ),
       ),
     ]);

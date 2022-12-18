@@ -110,20 +110,27 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               child: Center(child: SizedBox(width: Dimensions.WEB_MAX_WIDTH, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
-                Row(children: [
+ SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
                   Text('${'order_id'.tr}:', style: robotoRegular),
                   SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  Text(_order.id.toString(), style: robotoMedium),
+                  Text(_order.id.toString(), style: robotoBold),
                   SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   Expanded(child: SizedBox()),
+                 
+                ]),
+                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+
+               Row(children: [
                   Icon(Icons.watch_later, size: 17),
                   SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   Text(
                     DateConverter.dateTimeStringToDateTime(_order.createdAt),
                     style: robotoRegular,
-                  ),
-                ]),
+                  )]),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
                 _order.scheduled == 1 ? Row(children: [
