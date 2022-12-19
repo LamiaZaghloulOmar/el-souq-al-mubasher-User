@@ -23,7 +23,7 @@ class MenuScreen extends StatelessWidget {
 
     final List<MenuModel> _menuList = [
       MenuModel(
-          icon: '', title: 'profile'.tr, route: RouteHelper.getProfileRoute()),
+          icon: Images.logo, title: 'profile'.tr, route: RouteHelper.getProfileRoute()),
       MenuModel(
           icon: Images.location,
           title: 'my_address'.tr,

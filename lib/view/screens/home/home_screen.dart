@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         "ImgUrl + ${Get.find<SplashController>().configModel.baseUrls.campaignImageUrl}");
     HomeScreen.loadData(false);
   }
-
+int selectServ=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -436,18 +436,30 @@ Spacer(),
                                                       height:50,
                                                       width: MediaQuery.of(context).size.width,
                                                       color: primaryColor,
-                                                  //    child: 
-                                                  //  ListView.builder(
-                                                  //   scrollDirection: Axis.horizontal,
-                                                  //   itemCount:mainCat.length,
-                                                  //    itemBuilder: (context, index) {
-                                                      // return InkWell(
-                                                      //   onTap: (){
-                                                      //     print(index);
-                                                      //   },
+                                                     child: 
+                                                   ListView.builder(
+                                                    scrollDirection: Axis.horizontal,
+                                                    itemCount:5,
+                                                     itemBuilder: (context, index) {
+                                                      return InkWell(
+                                                        onTap: (){
+                                                          print(index);
+                                                          setState(() {
+                                                            selectServ=index;
+                                                          });
+                                                          
+                                                        },
                                                         child: Container(
                                                         margin: EdgeInsets.only(bottom: 5),
-                                                        
+                                                         decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                  //                   <--- left side
+                                  color: selectServ == index
+                                      ? Colors.white
+                                      : Colors.transparent,
+                                  width: selectServ == index ? 2.0 : 0,
+                                ))),
                                                         padding: EdgeInsets.only(left: 15,right: 15,
                                                         top: 15),
                                                         child:Text('الخدمات',
@@ -456,7 +468,7 @@ Spacer(),
                                                          FontWeight.bold,fontSize: 16,color: Colors.white),
                                                          )
                                                      
-                                                   ),
+                                                   ),);})
                                                        
                                                     ),
                                                       //  SizedBox(height: 30,),
@@ -494,7 +506,7 @@ Spacer(),
                                                                 10,
                                                             mainAxisSpacing: 10,
                                                             childAspectRatio:
-                                                                (1 / 1.4),
+                                                                (1 / 1.5),
                                                           ),
 
                                                           // separatorBuilder:

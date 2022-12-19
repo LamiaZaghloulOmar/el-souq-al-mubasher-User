@@ -25,26 +25,24 @@ class All {
 
 class _CategoryViewState extends State<CategoryView> {
   List<All> all = [];
-  int itemSelected=0;
+  int itemSelected = 0;
   // List<CategoryModel> al = [];
   List<CategoryModel> subcat = [];
   @override
   void initState() {
     super.initState();
-    // widget.categoryController.categoryList.forEach((e) {
-    //   getSub(e.id).then((value) {
-    //     all.add(All(
-    //         e.id.toString(), Get.find<CategoryController>().subCategoryList));
-    //   });
-    // });
+    widget.categoryController.categoryList.forEach((e) {
+      getSub(e.id).then((value) {
+        all.add(All(
+            e.id.toString(), Get.find<CategoryController>().subCategoryList));
+      });
+    });
     if (widget.categoryController.categoryList.isNotEmpty) {
       getSub(widget.categoryController.categoryList[0].id).then((value) {
-        // all.add(All(
-        //     widget.categoryController.categoryList[0].id.toString(), Get.find<CategoryController>().subCategoryList));
         subcat = Get.find<CategoryController>().subCategoryList;
-        print(subcat);
       });
     }
+   
   }
 
   Future getSub(id) async {
@@ -90,26 +88,32 @@ class _CategoryViewState extends State<CategoryView> {
                           // }
                           return InkWell(
                               onTap: () {
-                                itemSelected=index;
-                                getSub(widget.categoryController
-                                        .categoryList[index].id)
-                                    .then((value) {
-                                  print(value);
-                                  subcat.clear(); 
-                                  subcat = Get.find<CategoryController>()
-                                      .subCategoryList;
-                                  print(subcat);
+                                print(all);
+                                setState(() {
+                                  itemSelected = index;
                                 });
+                                for (var i = 0; i < all.length; i++) {
+                                  if (all[i].id ==
+                                      widget.categoryController
+                                          .categoryList[index].id
+                                          .toString()) {
+                                    print(all[i].arr.length);
+                                    subcat = all[i].arr;
+                                  }
+                                }
                               },
-                              child: Container( 
+                              child: Container(
                                 decoration: BoxDecoration(
                                     border: Border(
                                         bottom: BorderSide(
                                   //                   <--- left side
-                                  color:itemSelected==index? Colors.white:Colors.transparent,
-                                  width:itemSelected==index? 2.0:0,
+                                  color: itemSelected == index
+                                      ? Colors.white
+                                      : Colors.transparent,
+                                  width: itemSelected == index ? 2.0 : 0,
                                 ))),
-                                margin: EdgeInsets.only(left: 10, right: 10,bottom: 5,top: 5),
+                                margin: EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 5, top: 5),
                                 // height: 100,
                                 // width: 20,
                                 child: Center(
@@ -297,22 +301,14 @@ class _CategoryViewState extends State<CategoryView> {
             child: Container(
               // height: 100,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  // color: Colors.blue.shade600,
-                  // borderRadius: BorderRadius.only(
-                  //   bottomRight: Radius.circular(
-                  //       Dimensions.RADIUS_LARGE),
-                  //   bottomLeft: Radius.circular(
-                  //       Dimensions.RADIUS_LARGE),
-                  // ),
-                  ),
+
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 4,
                   padding: EdgeInsets.all(0),
-                  // childAspectRatio: 1 / 1.3,
+                  childAspectRatio: 1 / 1.3,
                   physics: NeverScrollableScrollPhysics(),
                   children: List.generate(subcat.length, (i) {
                     return InkWell(

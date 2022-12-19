@@ -813,7 +813,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                             ? 'update_in_cart'.tr
                                             : 'add_to_cart'.tr,
                                     onPressed: () {
-                                      Get.back();
+                                      // Get.back();
                                       if (widget.isCampaign) {
                                         Get.toNamed(
                                             RouteHelper.getCheckoutRoute(
@@ -823,27 +823,27 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                               cartList: [_cartModel],
                                             ));
                                       } else {
-                                        if (Get.find<CartController>()
-                                            .existAnotherRestaurantProduct(
-                                                _cartModel
-                                                    .product.restaurantId)) {
-                                          Get.dialog(
-                                              ConfirmationDialog(
-                                                icon: Images.warning,
-                                                title:
-                                                    'are_you_sure_to_reset'.tr,
-                                                description:
-                                                    'if_you_continue'.tr,
-                                                onYesPressed: () {
-                                                  Get.back();
-                                                  Get.find<CartController>()
-                                                      .removeAllAndAddToCart(
-                                                          _cartModel);
-                                                  _showCartSnackBar(context);
-                                                },
-                                              ),
-                                              barrierDismissible: false);
-                                        } else {
+                                        // if (Get.find<CartController>()
+                                        //     .existAnotherRestaurantProduct(
+                                        //         _cartModel
+                                        //             .product.restaurantId)) {
+                                        //   Get.dialog(
+                                        //       ConfirmationDialog(
+                                        //         icon: Images.warning,
+                                        //         title:
+                                        //             'are_you_sure_to_reset'.tr,
+                                        //         description:
+                                        //             'if_you_continue'.tr,
+                                        //         onYesPressed: () {
+                                        //           Get.back();
+                                        //           Get.find<CartController>()
+                                        //               .removeAllAndAddToCart(
+                                        //                   _cartModel);
+                                        //           _showCartSnackBar(context);
+                                        //         },
+                                        //       ),
+                                        //       barrierDismissible: false);
+                                        // } else {
                                           Get.find<CartController>().addToCart(
                                               _cartModel,
                                               widget.cartIndex != null
@@ -851,7 +851,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                   : productController
                                                       .cartIndex);
                                           _showCartSnackBar(context);
-                                        }
+                                        // }
                                       }
                                     },
                                     /*onPressed: (!isExistInCart) ? () {
