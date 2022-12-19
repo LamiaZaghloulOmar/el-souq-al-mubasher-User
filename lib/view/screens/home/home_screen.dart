@@ -32,7 +32,9 @@ class HomeScreen extends StatefulWidget {
   static Future<void> loadData(bool reload) async {
     Get.find<BannerController>().getBannerList(reload);
     Get.find<CategoryController>().getCategoryList(reload);
-    Get.find<CategoryController>().getServices();
+   
+    Get.find<CategoryController>().getMainServices(); 
+    
     Get.find<RestaurantController>()
         .getPopularRestaurantList(reload, 'all', false);
     Get.find<CampaignController>().getItemCampaignList(reload);
@@ -54,10 +56,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   ConfigModel _configModel = Get.find<SplashController>().configModel;
-
+ Future getSub(id) async {
+    await Get.find<CategoryController>().getServices(id.toString());
+  }
   @override
   void initState() {
     super.initState();
+    Get.find<CategoryController>().getMainServices().then((v){
+     if(Get.find<CategoryController>().main_services.isNotEmpty){
+      getSub(Get.find<CategoryController>().main_services[0].id); 
+     }else{
+      print("kkkkkkkkkkkkkkkkk");
+     }
+    });
     print(
         "ImgUrl + ${Get.find<SplashController>().configModel.baseUrls.campaignImageUrl}");
     HomeScreen.loadData(false);
@@ -369,11 +380,11 @@ Spacer(),
                                     Container(
                                       // color: Colors.blue.shade200,
                                       // padding: const EdgeInsets.symmetric(
-                                          // horizontal: 10.0),
+                                      //     horizontal: 10.0),
                                       child: GetBuilder<CategoryController>(
                                           builder: (categoryController) {
                                         return categoryController
-                                                .services.isEmpty
+                                                .main_services.isEmpty
                                             ? SizedBox()
                                             : Padding(
                                                 padding: const EdgeInsets.only(
@@ -439,7 +450,10 @@ Spacer(),
                                                      child: 
                                                    ListView.builder(
                                                     scrollDirection: Axis.horizontal,
-                                                    itemCount:5,
+                                                    itemCount: Get.find<
+                                                                  CategoryController>()
+                                                              .main_services
+                                                              .length,
                                                      itemBuilder: (context, index) {
                                                       return InkWell(
                                                         onTap: (){
@@ -447,6 +461,8 @@ Spacer(),
                                                           setState(() {
                                                             selectServ=index;
                                                           });
+
+                                                           Get.find<CategoryController>().getServices(Get.find<CategoryController>().main_services[index].id); 
                                                           
                                                         },
                                                         child: Container(
@@ -462,7 +478,8 @@ Spacer(),
                                 ))),
                                                         padding: EdgeInsets.only(left: 15,right: 15,
                                                         top: 15),
-                                                        child:Text('الخدمات',
+                                child:Text(Get.find<CategoryController>().main_services[index]
+                                                                    .name,
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(fontWeight:
                                                          FontWeight.bold,fontSize: 16,color: Colors.white),
@@ -473,7 +490,7 @@ Spacer(),
                                                     ),
                                                       //  SizedBox(height: 30,),
 
-                                                    Container(
+                                                Get.find<CategoryController>().isLoadingserv?Center(child: CircularProgressIndicator(),):    Container(
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius.only(

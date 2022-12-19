@@ -8,6 +8,8 @@ class AppConstants {
   static const String BASE_URL = 'https://elsouqalmubasher.com';
   static const String CATEGORY_URI = '/api/v1/categories';
   static const String SERVICES_URI = '/api/v1/services';
+  static const String SERVICES_SUB_URI = '/api/v1/services/servicebymain';
+  static const String MAIN_SERVICES_URI = '/api/v1/services/main';
   static const String BANNER_URI = '/api/v1/banners';
   static const String RESTAURANT_PRODUCT_URI = '/api/v1/products/latest';
   static const String POPULAR_PRODUCT_URI = '/api/v1/products/popular';

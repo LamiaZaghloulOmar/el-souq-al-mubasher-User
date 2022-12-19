@@ -18,7 +18,12 @@ class CategoryRepo {
   Future<Response> getServices() async {
     return await apiClient.getData('${AppConstants.SERVICES_URI}');
   }
-
+   Future<Response> getSubServices(id) async {
+    return await apiClient.getData('${AppConstants.SERVICES_SUB_URI}/$id');
+  }
+  Future<Response> getMainServices() async { 
+    return await apiClient.getData('${AppConstants.MAIN_SERVICES_URI}');
+  }
   Future<Response> getCategoryProductList(
       String categoryID, int offset, String type) async {
     return await apiClient.getData(

@@ -27,7 +27,7 @@ class Services {
       this.translations});
 
   Services.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id =int.parse(json['id'].toString());
     name = json['name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -62,6 +62,7 @@ class CategoryController extends GetxController implements GetxService {
 
   List<CategoryModel> _categoryList;
   List<Services> _services = [];
+  List<Services> _mainservices = [];
   List<Post> _postsList = [];
   List<CategoryModel> _subCategoryList;
   List<Product> _categoryProductList;
@@ -92,6 +93,7 @@ class CategoryController extends GetxController implements GetxService {
   List<Restaurant> get searchRestList => _searchRestList;
   List<bool> get interestSelectedList => _interestSelectedList;
   bool get isLoading => _isLoading;
+  bool get isLoadingserv => _isLoadingserv;
   int get pageSize => _pageSize;
   int get restPageSize => _restPageSize;
   bool get isSearching => _isSearching;
@@ -101,6 +103,8 @@ class CategoryController extends GetxController implements GetxService {
   String get searchText => _searchText;
   int get offset => _offset;
   List<Services> get services => _services;
+  List<Services> get main_services => _mainservices;
+  
 
   Future<void> getCategoryList(bool reload) async {
     if (_categoryList == null || reload) {
@@ -161,15 +165,44 @@ class CategoryController extends GetxController implements GetxService {
     update();
     
   }
+  
 
-  void getServices() async {
-    Response response = await categoryRepo.getServices();
+    getMainServices() async {
+    Response response = await categoryRepo.getMainServices();
+    print("ServiceCatResponse + ${response.body[0]}");
+    if (response.statusCode == 200) {
+      _mainservices = [];
+      // _subCategoryList
+      //     .add(CategoryModel(id: int.parse(categoryID), name: 'all'.tr));
+      response.body.forEach((category) {
+        _mainservices.add(Services(
+            id: Services.fromJson(category).id,
+            // createdAt: Services.fromJson(category).createdAt,
+            // image: Services.fromJson(category).image,
+            name: Services.fromJson(category).name,
+            // status: Services.fromJson(category).status,
+            // translations: Services.fromJson(category).translations,
+            // updatedAt: Services.fromJson(category).updatedAt
+            ));
+      });
+    } else {
+      print("ServiceCatFail");
+      ApiChecker.checkApi(response);
+    }
+    update();
+  }
+
+ bool _isLoadingserv = false;
+  Future<void> getServices(id) async {
+    _isLoadingserv = true;
+    update();
+    Response response = await categoryRepo.getSubServices(id);
     print("ServiceCatResponse + ${response.body[0]}");
     if (response.statusCode == 200) {
       _services = [];
       // _subCategoryList
       //     .add(CategoryModel(id: int.parse(categoryID), name: 'all'.tr));
-      response.body[0].forEach((category) {
+      response.body.forEach((category) {
         _services.add(Services(
             id: Services.fromJson(category).id,
             createdAt: Services.fromJson(category).createdAt,
@@ -183,6 +216,7 @@ class CategoryController extends GetxController implements GetxService {
       print("ServiceCatFail");
       ApiChecker.checkApi(response);
     }
+    _isLoadingserv = false;
     update();
   }
 
