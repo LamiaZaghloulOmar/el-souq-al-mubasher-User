@@ -22,7 +22,9 @@ import 'package:efood_multivendor/view/base/rating_bar.dart';
 import 'package:efood_multivendor/view/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:share_plus/share_plus.dart';
+import 'package:uni_links/uni_links.dart';
+import 'package:flutter/services.dart' show PlatformException;
 import '../../base/custom_app_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -58,7 +60,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         isBackButtonExist: true,
       ),
       body: Container(
-        margin: EdgeInsets.only(top: GetPlatform.isWeb ? 0 : 30),
+        // margin: EdgeInsets.only(top: GetPlatform.isWeb ? 0 : 30),
         padding: EdgeInsets.only(
             left: Dimensions.PADDING_SIZE_DEFAULT,
             bottom: Dimensions.PADDING_SIZE_DEFAULT),
@@ -193,7 +195,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.RADIUS_SMALL),
-                                    child: CustomImage(
+                                    child:Container(
+                                     decoration: BoxDecoration(
+                                      border: Border.all(width: 0.5,color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            Dimensions
+                                                                .RADIUS_SMALL),
+                                     ),
+                                      child: CustomImage(
                                       image:
                                           '${widget.isCampaign ? Get.find<SplashController>().configModel.baseUrls.campaignImageUrl : Get.find<SplashController>().configModel.baseUrls.productImageUrl}/${widget.product.image}',
                                       width: ResponsiveHelper.isMobile(context)
@@ -202,15 +212,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       height: ResponsiveHelper.isMobile(context)
                                           ? 170
                                           : 140,
-                                      fit: BoxFit.cover,
-                                    ),
+                                      fit: BoxFit.contain,
+                                    )),
                                   ),
                                   DiscountTag(
                                       discount: _discount,
                                       discountType: _discountType,
                                       fromTop: 20),
                                 ]),
-                                SizedBox(height: 10),
+                                SizedBox(height: 15),
                                 Row(
                                   children: [
                                     Column(
@@ -253,6 +263,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                               size: 15,
                                               ratingCount:
                                                   widget.product.ratingCount),
+                                                  SizedBox(height: 5,),
                                           Text(
                                             '${PriceConverter.convertPrice(_startingPrice, discount: _discount, discountType: _discountType)}'
                                             '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(_endingPrice, discount: _discount, discountType: _discountType)}' : ''}',
@@ -260,11 +271,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                 fontSize:
                                                     Dimensions.fontSizeLarge),
                                           ),
+                                                  SizedBox(height: 5,),
+
                                           price > priceWithDiscount
                                               ? Text(
                                                   '${PriceConverter.convertPrice(_startingPrice)}'
                                                   '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(_endingPrice)}' : ''}',
-                                                  style: robotoMedium.copyWith(
+                                                  style: TextStyle(
                                                       color: Theme.of(context)
                                                           .disabledColor,
                                                       decoration: TextDecoration
@@ -277,34 +290,71 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Get.find<SplashController>()
-                                                  .configModel
-                                                  .toggleVegNonVeg
-                                              ? Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: Dimensions
-                                                          .PADDING_SIZE_EXTRA_SMALL,
-                                                      horizontal: Dimensions
-                                                          .PADDING_SIZE_SMALL),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            Dimensions
-                                                                .RADIUS_SMALL),
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                  ),
-                                                  child: Text(
-                                                    widget.product.veg == 0
-                                                        ? 'non_veg'.tr
-                                                        : 'veg'.tr,
-                                                    style: robotoRegular.copyWith(
-                                                        fontSize: Dimensions
-                                                            .fontSizeExtraSmall,
-                                                        color: Colors.white),
-                                                  ),
-                                                )
-                                              : SizedBox(),
+                                          InkWell(
+                                            onTap: () async {
+     try{
+        
+        Uri initialLink = await getInitialUri();
+        print(initialLink);
+        if(initialLink!=null){
+          showCustomSnackBar(initialLink.path);
+        }
+          // ignore: deprecated_member_use
+          uriLinkStream.listen((link) {
+          print(link);
+          showCustomSnackBar(initialLink.path);
+
+      // Parse the link and warn the user, if it is not correct
+    }, onError: (err) {
+      print("errrr");
+      // Handle exception by warning the user their action did not succeed
+    });
+         Share.share(widget.product.name+'\n'+widget.product.description??""+'\n');
+     } on PlatformException {
+       print('platfrom exception unilink');
+     }
+     
+                                            },
+                                            child:Container(
+                                            margin: EdgeInsets.only(left: 10),
+                                            child: Row(children: [
+                                            //  CircleAvatar(child:Text('50',style: TextStyle(color: Theme.of(context).cardColor,fontSize: 12),
+                                            //  textAlign: TextAlign.center,),
+                                            //  radius: 15,
+                                            //  backgroundColor: Theme.of(context).primaryColor,
+                                            //  ),
+                                              SizedBox(width: 5,),
+                                            Icon(Icons.share,color: Theme.of(context).primaryColor,),
+                                            
+                                            ])),),
+                                          // Get.find<SplashController>()
+                                          //         .configModel
+                                          //         .toggleVegNonVeg
+                                          //     ? Container(
+                                          //         padding: EdgeInsets.symmetric(
+                                          //             vertical: Dimensions
+                                          //                 .PADDING_SIZE_EXTRA_SMALL,
+                                          //             horizontal: Dimensions
+                                          //                 .PADDING_SIZE_SMALL),
+                                          //         decoration: BoxDecoration(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   Dimensions
+                                          //                       .RADIUS_SMALL),
+                                          //           color: Theme.of(context)
+                                          //               .primaryColor,
+                                          //         ),
+                                          //         child: Text(
+                                          //           widget.product.veg == 0
+                                          //               ? 'non_veg'.tr
+                                          //               : 'veg'.tr,
+                                          //           style: robotoRegular.copyWith(
+                                          //               fontSize: Dimensions
+                                          //                   .fontSizeExtraSmall,
+                                          //               color: Colors.white),
+                                          //         ),
+                                          //       )
+                                          //     : SizedBox(),
                                           SizedBox(
                                               height:
                                                   Get.find<SplashController>()

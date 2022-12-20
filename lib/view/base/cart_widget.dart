@@ -20,7 +20,7 @@ class CartWidget extends StatelessWidget {
         return cartController.cartList.length > 0 ? Positioned(
           top: -5, right: -5,
           child: Container(
-            height: size < 20 ? 10 : size/2, width: size < 20 ? 10 : size/2, alignment: Alignment.center,
+            height: size < 20 ? 10 : size/1.5, width: size < 20 ? 10 : size/1.5, alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle, color: fromRestaurant ? Theme.of(context).cardColor : Theme.of(context).primaryColor,
               border: Border.all(width: size < 20 ? 0.7 : 1, color: fromRestaurant ? Theme.of(context).primaryColor : Theme.of(context).cardColor),
@@ -28,7 +28,7 @@ class CartWidget extends StatelessWidget {
             child: Text(
               cartController.cartList.length.toString(),
               style: robotoRegular.copyWith(
-                fontSize: size < 20 ? size/3 : size/3.8,
+                fontSize: size < 20 ? size/2.5 : size/2.5,
                 color: fromRestaurant ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
               ),
             ),

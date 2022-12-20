@@ -147,7 +147,7 @@ class ProductWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 5,),
+                      // SizedBox(height: 5,),
                       Text(
                         isRestaurant ? restaurant.name : product.name,
                         style: robotoMedium.copyWith(
@@ -215,7 +215,7 @@ class ProductWidget extends StatelessWidget {
                                       ? Text(
                                           PriceConverter.convertPrice(
                                               product.price),
-                                          style: robotoMedium.copyWith(
+                                          style:TextStyle(
                                             fontSize:
                                                 Dimensions.fontSizeExtraSmall,
                                             color:

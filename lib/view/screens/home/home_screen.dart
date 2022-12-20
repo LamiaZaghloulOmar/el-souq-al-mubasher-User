@@ -35,14 +35,14 @@ class HomeScreen extends StatefulWidget {
    
     Get.find<CategoryController>().getMainServices(); 
     
-    Get.find<RestaurantController>()
-        .getPopularRestaurantList(reload, 'all', false);
-    Get.find<CampaignController>().getItemCampaignList(reload);
+    // Get.find<RestaurantController>()
+    //     .getPopularRestaurantList(reload, 'all', false);
+    // Get.find<CampaignController>().getItemCampaignList(reload);
     Get.find<ProductController>().getPopularProductList(reload, 'all', false);
-    Get.find<RestaurantController>()
-        .getLatestRestaurantList(reload, 'all', false);
+    // Get.find<RestaurantController>()
+    //     .getLatestRestaurantList(reload, 'all', false);
     Get.find<ProductController>().getReviewedProductList(reload, 'all', false);
-    Get.find<RestaurantController>().getRestaurantList('1', reload);
+    // Get.find<RestaurantController>().getRestaurantList('1', reload);
     if (Get.find<AuthController>().isLoggedIn()) {
       Get.find<UserController>().getUserInfo();
       Get.find<NotificationController>().getNotificationList(reload);
@@ -65,12 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Get.find<CategoryController>().getMainServices().then((v){
      if(Get.find<CategoryController>().main_services.isNotEmpty){
       getSub(Get.find<CategoryController>().main_services[0].id); 
-     }else{
-      print("kkkkkkkkkkkkkkkkk");
-     }
+     } 
     });
-    print(
-        "ImgUrl + ${Get.find<SplashController>().configModel.baseUrls.campaignImageUrl}");
+     
     HomeScreen.loadData(false);
   }
 int selectServ=0;
@@ -86,16 +83,16 @@ int selectServ=0;
           onRefresh: () async {
             await Get.find<BannerController>().getBannerList(true);
             await Get.find<CategoryController>().getCategoryList(true);
-            await Get.find<RestaurantController>()
-                .getPopularRestaurantList(true, 'all', false);
-            await Get.find<CampaignController>().getItemCampaignList(true);
+            // await Get.find<RestaurantController>()
+            //     .getPopularRestaurantList(true, 'all', false);
+            // await Get.find<CampaignController>().getItemCampaignList(true);
             await Get.find<ProductController>()
                 .getPopularProductList(true, 'all', false);
-            await Get.find<RestaurantController>()
-                .getLatestRestaurantList(true, 'all', false);
+            // await Get.find<RestaurantController>()
+            //     .getLatestRestaurantList(true, 'all', false);
             await Get.find<ProductController>()
                 .getReviewedProductList(true, 'all', false);
-            await Get.find<RestaurantController>().getRestaurantList('1', true);
+            // await Get.find<RestaurantController>().getRestaurantList('1', true);
             if (Get.find<AuthController>().isLoggedIn()) {
               await Get.find<UserController>().getUserInfo();
               await Get.find<NotificationController>()
@@ -482,7 +479,7 @@ Spacer(),
                                                                     .name,
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(fontWeight:
-                                                         FontWeight.bold,fontSize: 16,color: Colors.white),
+                                                         FontWeight.bold,fontSize: 13,color: Colors.white),
                                                          )
                                                      
                                                    ),);})

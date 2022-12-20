@@ -122,6 +122,7 @@ class _CategoryViewState extends State<CategoryView> {
                                       .name,
                                   style: TextStyle(
                                     color: Theme.of(context).cardColor,
+                                    fontSize: 14
                                   ),
                                 )),
                               ));

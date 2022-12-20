@@ -81,7 +81,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                       child: Row(children: [
 
-                        ClipOval(child: CustomImage(
+                        ClipOval(child: notificationController.notificationList[index].data.image==""?
+                        CustomImage(
+                          height: 40, width: 40, fit: BoxFit.cover,
+                          image: 'https://www.w3schools.com/howto/img_avatar.png'): CustomImage(
                           height: 40, width: 40, fit: BoxFit.cover,
                           image: '${Get.find<SplashController>().configModel.baseUrls.notificationImageUrl}'
                               '/${notificationController.notificationList[index].data.image}',

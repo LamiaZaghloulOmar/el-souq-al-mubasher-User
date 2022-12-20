@@ -68,7 +68,7 @@ class ProductView extends StatelessWidget {
                   physics: isScrollable
                       ? BouncingScrollPhysics()
                       : NeverScrollableScrollPhysics(),
-                  childAspectRatio: 1 / 1.3,
+                  childAspectRatio: 1 / 1.5,
                   shrinkWrap: isScrollable ? false : true,
                   // itemCount: _length,
                   padding: padding,

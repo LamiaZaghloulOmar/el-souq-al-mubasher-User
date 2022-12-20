@@ -129,7 +129,7 @@ class _CategoryProductScreenState extends State<CategoryProductScreen>
                           autofocus: true,
                           textInputAction: TextInputAction.search,
                           decoration: InputDecoration(
-                            hintText: 'Search...',
+                            hintText: 'بحث...',
                             border: InputBorder.none,
                           ),
                           style: robotoRegular.copyWith(
@@ -144,12 +144,12 @@ class _CategoryProductScreenState extends State<CategoryProductScreen>
                       : Text(widget.categoryName,
                           style: robotoRegular.copyWith(
                             fontSize: Dimensions.fontSizeLarge,
-                            color: Theme.of(context).textTheme.bodyText1.color,
+                            color: Theme.of(context).cardColor,
                           )),
                   centerTitle: true,
                   leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    color: Theme.of(context).textTheme.bodyText1.color,
+                    icon: Icon(Icons.arrow_back_ios,size: 20,),
+                    color: Theme.of(context).cardColor,
                     onPressed: () {
                       if (catController.isSearching) {
                         catController.toggleSearch();
@@ -158,7 +158,7 @@ class _CategoryProductScreenState extends State<CategoryProductScreen>
                       }
                     },
                   ),
-                  backgroundColor: Theme.of(context).cardColor,
+                  backgroundColor: Theme.of(context).primaryColor,
                   elevation: 0,
                   actions: [
                     IconButton(
@@ -167,13 +167,13 @@ class _CategoryProductScreenState extends State<CategoryProductScreen>
                         catController.isSearching
                             ? Icons.close_sharp
                             : Icons.search,
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: Theme.of(context).cardColor,
                       ),
                     ),
                     IconButton(
                       onPressed: () => Get.toNamed(RouteHelper.getCartRoute()),
                       icon: CartWidget(
-                          color: Theme.of(context).textTheme.bodyText1.color,
+                          color: Theme.of(context).cardColor,
                           size: 25),
                     ),
                   ],
