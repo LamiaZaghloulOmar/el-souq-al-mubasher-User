@@ -13,6 +13,9 @@ import 'package:efood_multivendor/view/base/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/banner_controller.dart';
+import '../../../controller/category_controller.dart';
+
 class SplashScreen extends StatefulWidget {
   final String orderID;
   SplashScreen({@required this.orderID});
@@ -88,6 +91,13 @@ class _SplashScreenState extends State<SplashScreen> {
               Get.offNamed(
                   RouteHelper.getOrderDetailsRoute(int.parse(widget.orderID)));
             } else {
+                Get.find<CategoryController>().getMainServices().then((v){
+     if(Get.find<CategoryController>().main_services.isNotEmpty){
+        Get.find<CategoryController>().getServices(Get.find<CategoryController>().main_services[0].id); 
+     } 
+    });
+    Get.find<BannerController>().getBannerList(false);
+
               if (Get.find<AuthController>().isLoggedIn()) {
                 Get.find<AuthController>().updateToken();
                 await Get.find<WishListController>().getWishList();
@@ -97,15 +107,15 @@ class _SplashScreenState extends State<SplashScreen> {
                   Get.offNamed(RouteHelper.getAccessLocationRoute('splash'));
                 }
               } else {
-                if (Get.find<SplashController>().showIntro()) {
-                  if (AppConstants.languages.length > 1) {
-                    Get.offNamed(RouteHelper.getLanguageRoute('splash'));
-                  } else {
-                    Get.offNamed(RouteHelper.getOnBoardingRoute());
-                  }
-                } else {
+                // if (Get.find<SplashController>().showIntro()) {
+                  // if (AppConstants.languages.length > 1) {
+                    // Get.offNamed(RouteHelper.getLanguageRoute('splash'));
+                  // } else {
+                    // Get.offNamed(RouteHelper.getSignInRoute(RouteHelper.splash));
+                  // }
+                // } else {
                   Get.offNamed(RouteHelper.getMainRoute(RouteHelper.splash));
-                }
+                // }
               }
             }
           }

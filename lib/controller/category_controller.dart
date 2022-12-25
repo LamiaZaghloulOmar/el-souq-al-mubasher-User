@@ -194,10 +194,10 @@ class CategoryController extends GetxController implements GetxService {
 
  bool _isLoadingserv = false;
   Future<void> getServices(id) async {
-    _isLoadingserv = true;
+    // _isLoadingserv = true;
     update();
     Response response = await categoryRepo.getSubServices(id);
-    print("ServiceCatResponse + ${response.body[0]}");
+    print("ServiceCatResponse + ${response.body}");
     if (response.statusCode == 200) {
       _services = [];
       // _subCategoryList

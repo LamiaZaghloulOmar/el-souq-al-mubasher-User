@@ -167,12 +167,13 @@ class _SignInScreenState extends State<SignInScreen> {
                                 onChanged: (CountryCode countryCode) {
                                   _countryDialCode = countryCode.dialCode;
                                 },
+                                countryFilter: <String>['SA', 'EG','YE'],
                                 initialSelection: _countryDialCode != null
                                     ? _countryDialCode
                                     : Get.find<LocalizationController>()
                                         .locale
                                         .countryCode,
-                                favorite: [_countryDialCode,'YE','EG'],
+                                // favorite: [_countryDialCode,'YE','EG'],
                                 showDropDownButton: true,
                                 padding: EdgeInsets.zero,
                                 showFlagMain: true,

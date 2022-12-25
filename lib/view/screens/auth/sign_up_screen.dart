@@ -45,9 +45,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
 
-    _countryDialCode = CountryCode.fromCountryCode(
-            Get.find<SplashController>().configModel.country)
-        .dialCode;
+    _countryDialCode ='SA';
+    //  CountryCode.fromCountryCode(
+    //         Get.find<SplashController>().configModel.country)
+    //     .dialCode;
   }
 
   @override
@@ -143,8 +144,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             onChanged: (CountryCode countryCode) {
                               _countryDialCode = countryCode.dialCode;
                             },
+                            countryFilter: <String>['SA', 'EG','YE'],
                             initialSelection: _countryDialCode,
-                            favorite: [_countryDialCode],
+                            // favorite: [_countryDialCode,'EG','YE'],
                             showDropDownButton: true,
                             padding: EdgeInsets.zero,
                             showFlagMain: true,

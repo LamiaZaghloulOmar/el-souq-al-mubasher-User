@@ -112,7 +112,8 @@ SizedBox(height:5),
                     if (fromMenu) {
                       Navigator.pop(context);
                     } else {
-                      Get.offNamed(RouteHelper.getOnBoardingRoute());
+                     Get.offNamed(RouteHelper.getMainRoute(RouteHelper.main));
+                      // Get.offNamed(RouteHelper.getSignInRoute(RouteHelper.splash));
                     }
                   } else {
                     showCustomSnackBar('select_a_language'.tr);

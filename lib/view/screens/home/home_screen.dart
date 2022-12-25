@@ -19,22 +19,17 @@ import 'package:efood_multivendor/view/screens/home/advertise_screen.dart';
 import 'package:efood_multivendor/view/screens/home/web_home_screen.dart';
 import 'package:efood_multivendor/view/screens/home/widget/banner_view.dart';
 import 'package:efood_multivendor/view/screens/home/widget/category_view.dart';
-import 'package:efood_multivendor/view/screens/home/widget/popular_food_view.dart';
-import 'package:efood_multivendor/view/screens/home/widget/popular_restaurant_view.dart';
-import 'package:efood_multivendor/view/screens/posts/all_users.dart';
+import 'package:efood_multivendor/view/screens/home/widget/popular_food_view.dart'; 
+import 'package:efood_multivendor/view/screens/posts/all_users.dart'; 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../base/custom_image.dart';
+import 'package:get/get.dart'; 
 import '../posts/post_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static Future<void> loadData(bool reload) async {
-    Get.find<BannerController>().getBannerList(reload);
+    // Get.find<BannerController>().getBannerList(reload);
     Get.find<CategoryController>().getCategoryList(reload);
-   
-    Get.find<CategoryController>().getMainServices(); 
-    
+    // Get.find<CategoryController>().getMainServices(); 
     // Get.find<RestaurantController>()
     //     .getPopularRestaurantList(reload, 'all', false);
     // Get.find<CampaignController>().getItemCampaignList(reload);
@@ -56,17 +51,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   ConfigModel _configModel = Get.find<SplashController>().configModel;
- Future getSub(id) async {
-    await Get.find<CategoryController>().getServices(id.toString());
-  }
+//  Future getSub(id) async {
+//     await Get.find<CategoryController>().getServices(id.toString());
+//   }
   @override
   void initState() {
     super.initState();
-    Get.find<CategoryController>().getMainServices().then((v){
-     if(Get.find<CategoryController>().main_services.isNotEmpty){
-      getSub(Get.find<CategoryController>().main_services[0].id); 
-     } 
-    });
+    // Get.find<CategoryController>().getMainServices().then((v){
+    //  if(Get.find<CategoryController>().main_services.isNotEmpty){
+    //   getSub(Get.find<CategoryController>().main_services[0].id); 
+    //  } 
+    // });
      
     HomeScreen.loadData(false);
   }
@@ -121,7 +116,9 @@ int selectServ=0;
                         child: Row(children: [
                           Expanded(
                               child: InkWell(
-                            onTap: () => Get.toNamed(
+                            onTap: () =>
+                            // Get.to(NewMyHomePage()),
+                             Get.toNamed(
                                 RouteHelper.getAccessLocationRoute('home')),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -602,9 +599,10 @@ Spacer(),
                                         builder: (categoryController) {
                                       return categoryController.categoryList ==
                                               null
-                                          ? Center(
-                                              child:
-                                                  CircularProgressIndicator())
+                                          ? SizedBox()
+                                          // Center(
+                                          //     child:
+                                                  // CircularProgressIndicator())
                                           : categoryController
                                                       .categoryList.length ==
                                                   0

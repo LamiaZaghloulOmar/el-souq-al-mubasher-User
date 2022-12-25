@@ -1,6 +1,8 @@
 import 'package:efood_multivendor/data/model/response/language_model.dart';
 import 'package:efood_multivendor/util/images.dart';
 
+// email:almubasheelsouq@gmail.com
+// pass:souq123456
 class AppConstants {
   static const String APP_NAME = 'السوق المباشر';
   static const double APP_VERSION = 5.4;
@@ -109,15 +111,16 @@ class AppConstants {
   static const String LOCALIZATION_KEY = 'X-localization';
 
   static List<LanguageModel> languages = [
+        LanguageModel(
+        imageUrl: Images.arabic,
+        languageName: 'عربى',
+        countryCode: 'SA',
+        languageCode: 'ar'),
     LanguageModel(
         imageUrl: Images.english,
         languageName: 'English',
         countryCode: 'US',
         languageCode: 'en'),
-    LanguageModel(
-        imageUrl: Images.arabic,
-        languageName: 'عربى',
-        countryCode: 'SA',
-        languageCode: 'ar'),
+
   ];
 }

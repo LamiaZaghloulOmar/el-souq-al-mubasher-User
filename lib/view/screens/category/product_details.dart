@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:efood_multivendor/controller/auth_controller.dart';
 import 'package:efood_multivendor/controller/cart_controller.dart';
 import 'package:efood_multivendor/controller/product_controller.dart';
@@ -22,6 +24,8 @@ import 'package:efood_multivendor/view/base/rating_bar.dart';
 import 'package:efood_multivendor/view/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter/services.dart' show PlatformException;
@@ -309,7 +313,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       print("errrr");
       // Handle exception by warning the user their action did not succeed
     });
-         Share.share(widget.product.name+'\n'+widget.product.description??""+'\n');
+    
+     var url =widget.product.image!=null?
+  '${widget.isCampaign ? Get.find<SplashController>().configModel.baseUrls.campaignImageUrl : Get.find<SplashController>().configModel.baseUrls.productImageUrl}/${widget.product.image}':
+       "https://i.ytimg.com/vi/fq4N0hgOWzU/maxresdefault.jpg";
+    var response = await get(Uri.parse(url));
+    final documentDirectory = (await getExternalStorageDirectory()).path;
+    File imgFile = new File('$documentDirectory/flutter.png');
+    imgFile.writeAsBytesSync(response.bodyBytes);
+    Share.shareFiles(['$documentDirectory/flutter.png'],
+// await Share.shareXFiles([XFile('$documentDirectory/flutter.png')],
+         text:'http://elsouqalmubasher.com/'+'\n'+ widget.product.name+'\n'+widget.product.description??""+'\n',
+        );
+        
+// XFile file=XFile('https://previews.123rf.com/images/designsstock/designsstock1205/designsstock120500056/13605347-restaurant-menu-cover-design-with-knife-spoon-and-fork-.jpg');
+    // print(file);
+    // Share.shareXFiles([file]);
+        //  Share.share(widget.product.name+'\n'+widget.product.description??""+'\n');
      } on PlatformException {
        print('platfrom exception unilink');
      }
