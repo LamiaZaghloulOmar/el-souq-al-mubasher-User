@@ -190,17 +190,17 @@ class _ProductBottomSheetState extends State<ProductBottomSheet> {
                   ),
 
                   Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
-                      padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      child: Text(
-                        widget.product.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
-                        style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
-                      ),
-                    ) : SizedBox(),
+                    // Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
+                    //   padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                    //     color: Theme.of(context).primaryColor,
+                    //   ),
+                    //   child: Text(
+                    //     widget.product.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
+                    //     style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
+                    //   ),
+                    // ) : SizedBox(),
                     SizedBox(height: Get.find<SplashController>().configModel.toggleVegNonVeg ? 50 : 0),
                     widget.isCampaign ? SizedBox(height: 25) : GetBuilder<WishListController>(builder: (wishList) {
                       return InkWell(

@@ -455,7 +455,7 @@ Spacer(),
                                                           setState(() {
                                                             selectServ=index;
                                                           });
-
+ 
                                                            Get.find<CategoryController>().getServices(Get.find<CategoryController>().main_services[index].id); 
                                                           
                                                         },

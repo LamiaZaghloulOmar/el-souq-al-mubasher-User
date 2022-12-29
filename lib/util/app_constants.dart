@@ -92,6 +92,16 @@ class AppConstants {
   static const String LOYALTY_POINT_TRANSFER_URL =
       '/api/v1/customer/loyalty-point/point-transfer';
 
+        static const String GET_SERVICE_ORDER_BY_DM =
+      '/api/v1/services/getserviceorderbydm/';
+        static const String COMPLETE_SERVICE =
+      '/api/v1/services/completeservice/{id}';
+        static const String SHOW_SERVICE_REVIEW =
+      '/api/v1/services/showserviceReview/';
+      
+
+
+
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'multivendor_token';

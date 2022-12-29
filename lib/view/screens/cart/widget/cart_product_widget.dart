@@ -129,17 +129,17 @@ class CartProductWidget extends StatelessWidget {
                       ),
 
                       Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                        Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
-                          padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          child: Text(
-                            cart.product.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
-                            style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
-                          ),
-                        ) : SizedBox(),
+                        // Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
+                        //   padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                        //     color: Theme.of(context).primaryColor,
+                        //   ),
+                        //   child: Text(
+                        //     cart.product.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
+                        //     style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
+                        //   ),
+                        // ) : SizedBox(),
                         SizedBox(height: Get.find<SplashController>().configModel.toggleVegNonVeg ? Dimensions.PADDING_SIZE_EXTRA_SMALL : 0),
                         Row(children: [
                           QuantityButton(

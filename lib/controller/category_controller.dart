@@ -151,6 +151,8 @@ class CategoryController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       _postsList = [];
       _name = [];
+      print(response.body);
+      if(response.body.length>0){
       response.body[0].forEach((category) {
         _name.add(Name.fromJson(category));
       });
@@ -159,6 +161,7 @@ class CategoryController extends GetxController implements GetxService {
       response.body[1].forEach((category) {
         _postsList.add(Post.fromJson(category));
       });
+      }
     } else {
       ApiChecker.checkApi(response);
     }

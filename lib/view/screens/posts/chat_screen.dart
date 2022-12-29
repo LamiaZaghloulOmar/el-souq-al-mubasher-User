@@ -105,7 +105,12 @@ class _ChatScreenState extends State<ChatScreen> {
       // textDirection: TextDirection.ltr,
       // child:
        Scaffold(
-          appBar: CustomAppBar(title: widget.name),
+          appBar:AppBar(title: Text(widget.name,style: TextStyle(fontSize: 15),),
+          actions: [
+            InkWell(child:Container(
+              margin: EdgeInsets.only(top: 20,left: 10),
+              child: Text("قبول العرض")),)
+          ],),
           body: Column(children: [
             StreamBuilder(
               stream: getChatMessage(),

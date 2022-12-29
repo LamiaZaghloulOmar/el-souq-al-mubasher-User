@@ -57,7 +57,7 @@ class Restaurant {
   String deliveryTime;
   List<int> categoryIds;
   int veg;
-  int nonVeg;
+  // int nonVeg;
   Discount discount;
   List<Schedules> schedules;
 
@@ -88,7 +88,7 @@ class Restaurant {
         this.deliveryTime,
         this.categoryIds,
         this.veg,
-        this.nonVeg,
+        // this.nonVeg,
         this.discount,
         this.schedules,
       });
@@ -119,7 +119,7 @@ class Restaurant {
     active = json['active'];
     deliveryTime = json['delivery_time'];
     veg = json['veg'];
-    nonVeg = json['non_veg'];
+    // nonVeg = json['non_veg'];
     categoryIds = json['category_ids'] != null ? json['category_ids'].cast<int>() : [];
     discount = json['discount'] != null ? new Discount.fromJson(json['discount']) : null;
     if (json['schedules'] != null) {
@@ -156,7 +156,7 @@ class Restaurant {
     data['open'] = this.open;
     data['active'] = this.active;
     data['veg'] = this.veg;
-    data['non_veg'] = this.nonVeg;
+    // data['non_veg'] = this.nonVeg;
     data['delivery_time'] = this.deliveryTime;
     data['category_ids'] = this.categoryIds;
     if (this.discount != null) {

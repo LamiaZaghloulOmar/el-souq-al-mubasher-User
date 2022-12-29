@@ -66,17 +66,17 @@ class OrderProductWidget extends StatelessWidget {
                 PriceConverter.convertPrice(orderDetails.price),
                 style: robotoMedium,
               )),
-              Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
-                padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: Text(
-                  orderDetails.foodDetails.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
-                  style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
-                ),
-              ) : SizedBox(),
+              // Get.find<SplashController>().configModel.toggleVegNonVeg ? Container(
+              //   padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+              //     color: Theme.of(context).primaryColor,
+              //   ),
+              //   child: Text(
+              //     orderDetails.foodDetails.veg == 0 ? 'non_veg'.tr : 'veg'.tr,
+              //     style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
+              //   ),
+              // ) : SizedBox(),
             ]),
 
           ]),

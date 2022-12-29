@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:efood_multivendor/helper/cacheHelper.dart';
 import 'package:efood_multivendor/util/app_constants.dart';
+import 'package:efood_multivendor/util/styles.dart';
 import 'package:efood_multivendor/view/base/custom_app_bar.dart';
 import 'package:efood_multivendor/view/base/custom_button.dart';
 import 'package:efood_multivendor/view/screens/posts/chat_screen.dart';
+import 'package:efood_multivendor/view/screens/posts/posts_req_offer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -97,7 +99,7 @@ class _PostCommentsState extends State<PostComments> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: "Comments",
+          title: "العروض المقدمة",
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -117,10 +119,22 @@ class _PostCommentsState extends State<PostComments> {
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.separated(
                     itemBuilder: ((context, index) {
-                      return Column(
+                      return Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration:BoxDecoration(
+                           
+                  borderRadius: BorderRadius.all( Radius.circular(10) ),
+                   border: Border.all( width: 0.5,color: Theme.of(context).primaryColor)) ,
+                                child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
+                         Container(
+                           padding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10),
+                         decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all( Radius.circular(10) ),
+                   border: Border.all( width: 0.5,color: Theme.of(context).primaryColor)),
+                        child:  Row(
                             children: [
                               Container(
                                 decoration: BoxDecoration(
@@ -145,13 +159,14 @@ class _PostCommentsState extends State<PostComments> {
                                 children: [
                                   Row(
                                     children: [
+                                      SizedBox(width: 10,),
                                       Text(widget.postComments[index].userLname,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.bold,color: Colors.white)),
                                       SizedBox(width: 2),
                                       Text(widget.postComments[index].userFname,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.bold,color: Colors.white)),
                                     ],
                                   ),
                                   SizedBox(height: 3),
@@ -160,20 +175,22 @@ class _PostCommentsState extends State<PostComments> {
                                 ],
                               ),
                             ],
-                          ),
+                          )),
                           SizedBox(height: 3),
                           Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Row(
                               children: [
                                 Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 100,
+                                  margin: EdgeInsets.only(left: 1,right: 1),
+                                    // width:
+                                    //     MediaQuery.of(context).size.width - 100,
                                     child: Text(
                                         widget.postComments[index].comment)),
+                                        Spacer(),
                                 Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.blue.shade200,
+                                        color: Colors.black,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10))),
                                     child: Padding(
@@ -181,7 +198,7 @@ class _PostCommentsState extends State<PostComments> {
                                       child: Text(
                                           "${widget.postComments[index].price.toString()} ريال",
                                           style:
-                                              TextStyle(color: Colors.white)),
+                                              TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
                                     )),
                               ],
                             ),
@@ -212,32 +229,34 @@ class _PostCommentsState extends State<PostComments> {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 80.0),
+                                const EdgeInsets.symmetric(horizontal: 0.0),
                             child: CustomButton(
                                 buttonText: "تواصل الأن",
                                 onPressed: () async {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ChatScreen(
-                                                name:
-                                                    "${widget.postComments[index].userFname} ${widget.postComments[index].userLname}",
-                                                UserId: CacheHelper.getData(
-                                                    key: "UserId"),
-                                                ServiceId: widget
-                                                    .postComments[index].userId,
-                                                image: widget
-                                                    .postComments[index].image,
-                                                NotfromAll: true,
-                                              )));
+                                          builder: (context) => WorkerInfoForService()
+                                          // ChatScreen(
+                                          //       name:
+                                          //           "${widget.postComments[index].userFname} ${widget.postComments[index].userLname}",
+                                          //       UserId: CacheHelper.getData(
+                                          //           key: "UserId"),
+                                          //       ServiceId: widget
+                                          //           .postComments[index].userId,
+                                          //       image: widget
+                                          //           .postComments[index].image,
+                                          //       NotfromAll: true,
+                                          //     )
+                                              ));
                                 }),
                           ),
                         ],
-                      );
+                      ));
                     }),
                     separatorBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Divider(thickness: 1),
+                      // child: Divider(thickness: 1),
                     ),
                     itemCount: widget.postComments.length,
                   ),

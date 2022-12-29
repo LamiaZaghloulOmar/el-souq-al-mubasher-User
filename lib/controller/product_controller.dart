@@ -23,7 +23,7 @@ class ProductController extends GetxController implements GetxService {
   List<int> _addOnQtyList = [];
   String _popularType = 'all';
   String _reviewedType = 'all';
-  static List<String> _productTypeList = ['all', 'veg', 'non_veg'];
+  // static List<String> _productTypeList = ['all', 'veg', 'non_veg'];
 
   int _cartIndex = -1;
 
@@ -36,7 +36,7 @@ class ProductController extends GetxController implements GetxService {
   List<int> get addOnQtyList => _addOnQtyList;
   String get popularType => _popularType;
   String get reviewType => _reviewedType;
-  List<String> get productTypeList => _productTypeList;
+  // List<String> get productTypeList => _productTypeList;
   int get cartIndex => _cartIndex;
 
   Future<void> getPopularProductList(bool reload, String type, bool notify) async {

@@ -27,7 +27,7 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json) {
     address = json['address'];
-    id = json['id'];
+    id = int.parse(json['id'].toString());
     status = json['status'];
     image = json['image'];
     details = json['details'];
@@ -64,7 +64,7 @@ class Name {
     return data;
   }
 } 
-
+  
 class PostScreen extends StatefulWidget {
   const PostScreen({Key key}) : super(key: key);
 
@@ -96,9 +96,15 @@ class _PostScreenState extends State<PostScreen> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ListView.separated(
+                          child: ListView.builder(
                             itemBuilder: ((context, index) {
-                              return Column(
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration:BoxDecoration(
+                  borderRadius: BorderRadius.all( Radius.circular(10) ),
+                   border: Border.all( width: 0.5,color: Theme.of(context).primaryColor)) ,
+                                child:
+                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Column(
@@ -107,14 +113,8 @@ class _PostScreenState extends State<PostScreen> {
                            padding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10),
                          decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
-                                                    borderRadius: BorderRadius.all(
-       Radius.circular(10),
-      
-    ),
-                                 
-                                    border: Border.all(
-                                        width: 0.5,
-                                        color: Theme.of(context).primaryColor)),
+                  borderRadius: BorderRadius.all( Radius.circular(10) ),
+                   border: Border.all( width: 0.5,color: Theme.of(context).primaryColor)),
                         child:  Row(
                                         children: [
                                           Row(
@@ -174,7 +174,7 @@ class _PostScreenState extends State<PostScreen> {
                                                                         .bold,color: Theme.of(context).cardColor)),
                                                       ],
                                                     ),
-                                                    SizedBox(height: 3),
+                                                    SizedBox(height: 5),
                                                    Container(
                                                     margin: EdgeInsets.only(left: 10,right: 10),
                                                     child: Text(
@@ -189,6 +189,7 @@ class _PostScreenState extends State<PostScreen> {
                                           ),
                                           Spacer(),
                                           Container(
+                                            // color: Colors.red,
                                               child: Padding(
                                                   padding: EdgeInsets.all(0),
                                                   child: Container(
@@ -197,11 +198,12 @@ class _PostScreenState extends State<PostScreen> {
                                                         icon: Icon(
                                                             Icons.more_vert,
                                                             color:
-                                                                Colors.black),
+                                                                Colors.white),
                                                         itemBuilder:
                                                             (contextt) => [
                                                           PopupMenuItem(
                                                             onTap: () async {
+                                                              if(catController.postsList[index].status=="pending"){
                                                               print("Tapped");
                                                               print("IDDD + ${catController.postsList[index].id}");
                                                               print(CacheHelper
@@ -231,7 +233,12 @@ class _PostScreenState extends State<PostScreen> {
                                                                     "تم الحذف ",
                                                                     isError:
                                                                         false);
-                                                              }
+                                                              }else{
+                                                                  showCustomSnackBar(
+                                                                    "حدث خطأ",
+                                                                    isError:
+                                                                        true);
+                                                              }}
                                                             },
                                                             child: Row(
                                                               mainAxisAlignment:
@@ -259,7 +266,9 @@ class _PostScreenState extends State<PostScreen> {
                                                             catController
                                                                 .postsList[
                                                                     index]
-                                                                .details),
+                                                                .details,
+                                                                style: TextStyle(fontSize: 
+                                                                15,height: 1.5),),
                                                       ),
                                                     ),
                                   if (catController.postsList[index].image !=
@@ -299,14 +308,30 @@ class _PostScreenState extends State<PostScreen> {
                                               fit: BoxFit.cover),
                                        ) ),
                                       
-                                    )))
+                                    ))),
+
+                                   InkWell(
+                                    onTap: (){
+                                       Get.to(PostComments(
+                                                      id: catController
+                                                          .postsList[index]
+                                                          .id));
+                                    },
+                                    child: Container( height: 40,
+                                    width: MediaQuery.of(context).size.width,
+                                    margin: EdgeInsets.only(top: 5,bottom: 0),
+             decoration: BoxDecoration(
+                  color: Colors.white,
+               borderRadius: BorderRadius.all( Radius.circular(10) ),
+              border: Border.all( width: 0.5, color: Theme.of(context).primaryColor)),
+        child:Center(child: Text(" مشاهدة العروض",textAlign: TextAlign.center,)),))
                                 ],
-                              );
+                              ));
                             }),
-                            separatorBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Divider(thickness: 1),
-                            ),
+                            // separatorBuilder: (context, index) => Padding(
+                            //   padding: const EdgeInsets.all(8.0),
+                            //   child: Divider(thickness: 1),
+                            // ),
                             itemCount: catController.postsList.length,
                           ),
                         ),

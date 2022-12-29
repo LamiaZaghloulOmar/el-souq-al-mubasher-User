@@ -90,11 +90,11 @@ class FilterWidget extends StatelessWidget {
                 value: searchController.veg,
                 onClick: () => searchController.toggleVeg(),
               ) : SizedBox(),
-              Get.find<SplashController>().configModel.toggleVegNonVeg ? CustomCheckBox(
-                title: 'non_veg'.tr,
-                value: searchController.nonVeg,
-                onClick: () => searchController.toggleNonVeg(),
-              ) : SizedBox(),
+              // Get.find<SplashController>().configModel.toggleVegNonVeg ? CustomCheckBox(
+              //   title: 'non_veg'.tr,
+              //   value: searchController.nonVeg,
+              //   onClick: () => searchController.toggleNonVeg(),
+              // ) : SizedBox(),
               CustomCheckBox(
                 title: isRestaurant ? 'currently_opened_restaurants'.tr : 'currently_available_foods'.tr,
                 value: searchController.isAvailableFoods,

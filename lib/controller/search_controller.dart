@@ -143,9 +143,9 @@ class SearchController extends GetxController implements GetxService {
     if(_rating != -1) {
       _searchRestList.removeWhere((restaurant) => restaurant.avgRating < _rating);
     }
-    if(!_veg && _nonVeg) {
-      _searchRestList.removeWhere((product) => product.nonVeg == 0);
-    }
+    // if(!_veg && _nonVeg) {
+    //   _searchRestList.removeWhere((product) => product.nonVeg == 0);
+    // }
     if(!_nonVeg && _veg) {
       _searchRestList.removeWhere((product) => product.veg == 0);
     }
