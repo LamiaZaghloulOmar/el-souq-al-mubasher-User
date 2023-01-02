@@ -95,9 +95,13 @@ class AppConstants {
         static const String GET_SERVICE_ORDER_BY_DM =
       '/api/v1/services/getserviceorderbydm/';
         static const String COMPLETE_SERVICE =
-      '/api/v1/services/completeservice/{id}';
+      '/api/v1/services/completeservice/';
         static const String SHOW_SERVICE_REVIEW =
       '/api/v1/services/showserviceReview/';
+
+           static const String add_REVIEW =
+      '/api/v1/services/submit';
+      
       
 
 

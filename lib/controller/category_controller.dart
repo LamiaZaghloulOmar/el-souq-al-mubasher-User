@@ -3,8 +3,9 @@ import 'package:efood_multivendor/data/model/response/category_model.dart';
 import 'package:efood_multivendor/data/model/response/product_model.dart';
 import 'package:efood_multivendor/data/model/response/restaurant_model.dart';
 import 'package:efood_multivendor/data/repository/category_repo.dart';
+import 'package:efood_multivendor/view/base/custom_snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart'; 
 
 import '../view/screens/posts/post_screen.dart';
 
@@ -169,6 +170,69 @@ class CategoryController extends GetxController implements GetxService {
     
   }
   
+  void getserviceorders(id) async {
+     Response response = await categoryRepo.getserviceorderbydm(id);
+    if (response.statusCode == 200) {
+       print(response.body);
+      if(response.body.length>0){
+      // response.body[1].forEach((category) {
+      //   _postsList.add(Post.fromJson(category));
+      // });
+      }
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    
+  }
+
+void addrateForWorker(serviceMark,serviceowner,orderid,rate,comment) async {
+     Response response = await categoryRepo.addRate(serviceMark,serviceowner,orderid,rate,comment);
+    if (response.statusCode == 200) {
+       print(response.body);
+     showCustomSnackBar('تم التقييم بنجاح',isError: false);
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    
+  }
+
+
+  void getshowserviceReview(id) async {
+    _subCategoryIndex = 0;
+
+    Response response = await categoryRepo.showserviceReview(id);
+    if (response.statusCode == 200) {
+       
+
+      print(response.body);
+      if(response.body.length>0){
+      // response.body[1].forEach((category) {
+      //   _postsList.add(Post.fromJson(category));
+      // });
+      }
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    
+  }
+
+  void completMyOrder(id) async {
+    Response response = await categoryRepo.completeservice(id);
+    if (response.statusCode == 200) {
+       showCustomSnackBar('تم تغيير حالة الطلب الي مكتمل',isError: false);
+      
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    
+  }
+
+  
+
 
     getMainServices() async {
     Response response = await categoryRepo.getMainServices();

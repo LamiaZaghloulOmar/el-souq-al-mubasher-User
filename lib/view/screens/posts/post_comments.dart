@@ -236,7 +236,12 @@ class _PostCommentsState extends State<PostComments> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => WorkerInfoForService()
+                                          builder: (context) => WorkerInfoForService(
+                                            orderid:widget.postComments[index].orderId,
+                                            serviceId:widget.postComments[index].userId,
+                                            name: "${widget.postComments[index].userFname} ${widget.postComments[index].userLname}",
+ image: widget .postComments[index].image,
+                                          )
                                           // ChatScreen(
                                           //       name:
                                           //           "${widget.postComments[index].userFname} ${widget.postComments[index].userLname}",
@@ -244,8 +249,7 @@ class _PostCommentsState extends State<PostComments> {
                                           //           key: "UserId"),
                                           //       ServiceId: widget
                                           //           .postComments[index].userId,
-                                          //       image: widget
-                                          //           .postComments[index].image,
+                                          //       image: widget .postComments[index].image,
                                           //       NotfromAll: true,
                                           //     )
                                               ));

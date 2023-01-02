@@ -51,4 +51,26 @@ class CategoryRepo {
   Future<Response> getPostsList() async {
     return await apiClient.getData("/api/v1/customer/serviceorder/");
   }
+
+    Future<Response> getserviceorderbydm(id) async {
+    return await apiClient.getData(AppConstants.GET_SERVICE_ORDER_BY_DM+id);
+  }
+  // https://elsouqalmubasher.com/api/v1/services/getserviceorderbydm/
+
+    Future<Response> completeservice(id) async {
+    return await apiClient.getData(AppConstants.COMPLETE_SERVICE+id);
+  }
+
+    Future<Response> showserviceReview(id) async {
+    return await apiClient.getData(AppConstants.SHOW_SERVICE_REVIEW+id);
+  }
+
+   Future<Response> addRate(serviceMark,serviceowner,orderid,rate,comment) async {
+    return await apiClient
+        .postData(AppConstants.add_REVIEW, {"service_maker": serviceMark,
+        "service_owner":serviceowner,
+        "service_order_id":orderid,
+        "rate":rate,
+        "comment":comment,});
+  }
 }
