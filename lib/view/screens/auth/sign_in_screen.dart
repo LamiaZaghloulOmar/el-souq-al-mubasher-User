@@ -18,6 +18,7 @@ import 'package:efood_multivendor/view/base/web_menu_bar.dart';
 import 'package:efood_multivendor/view/screens/auth/widget/code_picker_widget.dart';
 import 'package:efood_multivendor/view/screens/auth/widget/condition_check_box.dart';
 import 'package:efood_multivendor/view/screens/auth/widget/guest_button.dart';
+import 'package:efood_multivendor/view/screens/auth/widget/social_login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
