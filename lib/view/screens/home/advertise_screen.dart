@@ -191,6 +191,7 @@ class _AdvertiseScreenState extends State<AdvertiseScreen> {
                             ),
                             GetBuilder<LocationController>(
                                 builder: (locationController) {
+                                  if(locationController.addressList!=null)
                                   if(locationController.addressList.isNotEmpty)
                                   id = locationController .addressList[  0] .id .toString();
                               return locationController.addressList != null

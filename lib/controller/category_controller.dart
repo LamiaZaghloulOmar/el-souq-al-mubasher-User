@@ -65,11 +65,15 @@ class CategoryController extends GetxController implements GetxService {
   List<Services> _services = [];
   List<Services> _mainservices = [];
   List<Post> _postsList = [];
+  List<Post> _postsByWorkerList = [];
+  List _reviewList = [];
   List<CategoryModel> _subCategoryList;
   List<Product> _categoryProductList;
   List<Restaurant> _categoryRestList;
   List<Product> _searchProductList = [];
   List<Name> _name = [];
+  List<Name> _nameW = [];
+  
   List<Restaurant> _searchRestList = [];
   List<bool> _interestSelectedList;
   bool _isLoading = false;
@@ -86,7 +90,11 @@ class CategoryController extends GetxController implements GetxService {
 
   List<CategoryModel> get categoryList => _categoryList;
   List<Post> get postsList => _postsList;
+  List<Post> get postsByWorkerList => _postsByWorkerList;
+  List get reviewList => _reviewList;
+  
   List<Name> get name => _name;
+  List<Name> get nameW => _nameW;
   List<CategoryModel> get subCategoryList => _subCategoryList;
   List<Product> get categoryProductList => _categoryProductList;
   List<Restaurant> get categoryRestList => _categoryRestList;
@@ -173,11 +181,16 @@ class CategoryController extends GetxController implements GetxService {
   void getserviceorders(id) async {
      Response response = await categoryRepo.getserviceorderbydm(id);
     if (response.statusCode == 200) {
+       _postsByWorkerList = [];
+      _nameW = [];
        print(response.body);
       if(response.body.length>0){
-      // response.body[1].forEach((category) {
-      //   _postsList.add(Post.fromJson(category));
-      // });
+           response.body[0].forEach((category) {
+        _nameW.add(Name.fromJson(category));
+      });
+      response.body[1].forEach((category) {
+        _postsByWorkerList.add(Post.fromJson(category));
+      });
       }
     } else {
       ApiChecker.checkApi(response);
@@ -200,17 +213,16 @@ void addrateForWorker(serviceMark,serviceowner,orderid,rate,comment) async {
 
 
   void getshowserviceReview(id) async {
-    _subCategoryIndex = 0;
-
+   
     Response response = await categoryRepo.showserviceReview(id);
     if (response.statusCode == 200) {
-       
+       _reviewList=[];
 
       print(response.body);
       if(response.body.length>0){
-      // response.body[1].forEach((category) {
-      //   _postsList.add(Post.fromJson(category));
-      // });
+      response.body[0].forEach((category) {
+        _reviewList.add(category);
+      });
       }
     } else {
       ApiChecker.checkApi(response);

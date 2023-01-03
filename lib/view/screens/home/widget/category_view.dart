@@ -54,12 +54,7 @@ class _CategoryViewState extends State<CategoryView> {
     ScrollController _scrollController = ScrollController();
     return Column(
       children: [
-        // Padding(
-        //   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        //   child: TitleWidget(
-        //       title: 'categories'.tr,
-        //       onTap: () => Get.toNamed(RouteHelper.getCategoryRoute())),
-        // ),
+        
         widget.categoryController.categoryList != null ||
                 all.isNotEmpty ||
                 all != null

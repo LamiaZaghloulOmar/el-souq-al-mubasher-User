@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //   getSub(Get.find<CategoryController>().main_services[0].id); 
     //  } 
     // });
-     
+       Get.find<CategoryController>().getCategoryList(true);
     HomeScreen.loadData(false);
   }
 int selectServ=0;

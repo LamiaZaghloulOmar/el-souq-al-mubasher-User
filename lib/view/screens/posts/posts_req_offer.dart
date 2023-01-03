@@ -5,6 +5,8 @@ import 'package:efood_multivendor/util/styles.dart';
 import 'package:efood_multivendor/view/base/custom_button.dart';
 import 'package:efood_multivendor/view/base/custom_text_field.dart';
 import 'package:efood_multivendor/view/screens/posts/chat_screen.dart';
+import 'package:efood_multivendor/view/screens/posts/worker_rates.dart';
+import 'package:efood_multivendor/view/screens/posts/worker_work.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -24,7 +26,7 @@ class WorkerInfoForService extends StatefulWidget {
 
 class _WorkerInfoForServiceState extends State<WorkerInfoForService> {
   
-  int indexSelected=0;
+  int indexSelected=1;
   final TextEditingController _commnetController = TextEditingController();
  double rate=1;
   @override
@@ -42,9 +44,12 @@ class _WorkerInfoForServiceState extends State<WorkerInfoForService> {
       appBar:CustomAppBar(
           title: "مراسلة",
         ),
-      body:Column(children: [
+      body:ListView(
+        shrinkWrap: true,
+       physics: ClampingScrollPhysics(),
+        children: [
         Container(
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.only(left:20,right: 20,top:10,bottom: 10),
           // padding: EdgeInsets.only(left:5,right: 5,top: 15,bottom: 15),
            decoration:BoxDecoration(
             color: Colors.white,
@@ -81,7 +86,7 @@ class _WorkerInfoForServiceState extends State<WorkerInfoForService> {
           },
           child:Container(child: Text("الاعمال",textAlign: TextAlign.center,
           style: TextStyle(  color: indexSelected==1?Colors.white:Colors.black,),),
-           padding: EdgeInsets.only(left: 10,right: 10,top: 15,bottom: 15),
+           padding: EdgeInsets.only(left: 14,right: 10,top: 15,bottom: 15),
            decoration:BoxDecoration(
               color: indexSelected==1?primaryColor:Colors.white,
             border: Border(
@@ -207,29 +212,61 @@ CustomButton(
             });
      
      
- 
+ showDialog(context: context, builder: (BuildContext context) {
+            return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: 
+      BorderRadius.all(Radius.circular(Dimensions.RADIUS_SMALL))),
+      insetPadding: EdgeInsets.all(30),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child:  SizedBox(
+        width: 400,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+ SizedBox(height: 20,),
+              Text("تأكيد أكمال الطلب",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+              Divider(),
+Text("هل متأكيد من اكمال الطلب ؟"),
+SizedBox(height: 20,),
+CustomButton(
+  width: MediaQuery.of(context).size.width/2,
+                              buttonText: 'تأكيد',
+                              onPressed:  (){
+                            Get.find<CategoryController>().completMyOrder(widget.orderid);   
+              navigator.pop(context);
+                              },
+                            ),
+              SizedBox(height: 20,),
+
+            ]),
+            
+            )));
+ });
              
                         
-  Get.find<CategoryController>().completMyOrder(widget.orderid);
+  // 
                              
                             
            
-           
+ 
           },
           child: Container(
             color: indexSelected==4?primaryColor:Colors.white,
             child: Text("اكمال الطلب",textAlign: TextAlign.center,
             style: TextStyle(  color: indexSelected==4?Colors.white:Colors.black,),),
-           padding: EdgeInsets.only(left: 10,right: 10,top: 15,bottom: 15),
+           padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
    
             )),
-        ]),)
+        ]),),
+
+    indexSelected==1?  WorkerWorkScreen(serviceId:widget.serviceId):
+    indexSelected==2?WorkerRateScreen(serviceId: widget.serviceId,):Container(),
       ]) ,
-    
-    floatingActionButton:Center(child:Container(
+    persistentFooterButtons: [ Center(child:Container(
       width: MediaQuery.of(context).size.width/1.5,
       child:CustomButton(
-                                buttonText: "تواصل الأن",
+                                buttonText: "مراسلة العامل",
                                 onPressed: ()  {
 
                                     Navigator.push(
@@ -246,7 +283,7 @@ CustomButton(
                                                 NotfromAll: true,
                                               )));
                                 }))),
-    ));
+    ]));
     
   }
  
