@@ -9,11 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:twitter_login/twitter_login.dart';
 
 class SocialLoginWidget extends StatelessWidget {
+  final GoogleSignIn _google = GoogleSignIn(
+                // clientId:'413373745155-92l2n00blitupsr09qp12ru6nqc0uujl.apps.googleusercontent.com',
+      clientId: '885278567001-saja79h13bmsaultqe6lejh7ml2ohord.apps.googleusercontent.com',
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ], );
+
   @override
   Widget build(BuildContext context) {
-
+ 
     return 
     // (Get.find<SplashController>().configModel.socialLogin[0].status
     // || Get.find<SplashController>().configModel.socialLogin[1].status) ? 
@@ -27,12 +36,7 @@ class SocialLoginWidget extends StatelessWidget {
         // Get.find<SplashController>().configModel.socialLogin[0].status ?
          InkWell(
           onTap: () async {
-              final GoogleSignIn _google = GoogleSignIn(
-      scopes: ['email'],
-      // clientId:
-          // "413373745155-92l2n00blitupsr09qp12ru6nqc0uujl.apps.googleusercontent.com" //android
-      //  "199112670784-dnup5f4a94lrpi6gp7h6plsfm93of1qb.apps.googleusercontent.com"  ///ios
-      );
+              
             final GoogleSignInAccount  googleUser = await _google.signIn();
               print(googleUser);
                final GoogleSignInAuthentication googleAuth =
@@ -66,12 +70,24 @@ class SocialLoginWidget extends StatelessWidget {
         // Get.find<SplashController>().configModel.socialLogin[1].status ? 
         InkWell(
           onTap: () async{
-            LoginResult _result = await FacebookAuth.instance.login();
+//             final facebookSignIn = FacebookLogin();
+// facebookSignIn.loginBehavior = FacebookLoginBehavior.webOnly;
+            LoginResult _result = await FacebookAuth.instance.login(
+              permissions: ["public_profile", "email"]
+            );
             if (_result.status == LoginStatus.success) {
               Map _userData = await FacebookAuth.instance.getUserData();
+              print(_userData);
               if(_userData != null){
                 Get.find<AuthController>().loginWithSocialMedia(SocialLogInBody(
-                  email: _userData['email'], token: _result.accessToken.token, uniqueId: _result.accessToken.userId, medium: 'facebook',
+                  image: _userData['picture']['url']??"http://",
+                  id:_userData['id']??"",
+                  phone: "0114324353",
+                  email: _userData['email'],
+                   token: _result.accessToken.token, 
+                   uniqueId: _result.accessToken.userId,
+                    medium: 'facebook',
+
                 ));
               }
             } else {
@@ -90,7 +106,32 @@ class SocialLoginWidget extends StatelessWidget {
           ),
         ),
         //  : SizedBox(),
+SizedBox(width:  Dimensions.PADDING_SIZE_SMALL ,),
+   InkWell(
+          onTap: () async {
+               final twitterLogin = new TwitterLogin(
+    apiKey: 'O6V8m2jSIIlqYWjnKHaJQ3yzy',
+    apiSecretKey:'uSXBGtOswaxg0DeEJb1kAeROMbnxXJSiuvNy6u0pWSur2kMicm',
+    redirectURI: 'elsouqalmubasher://'
+  );
 
+  // Trigger the sign-in flow
+  final authResult = await twitterLogin.login();
+ print(authResult);
+          },
+          child: Container(
+            height: 40,width: 40,
+            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 700 : 300], spreadRadius: 1, blurRadius: 5)],
+            ),
+            child: Image.asset(Images.twiter),
+          ),
+        ),
+        // SizedBox(width:  Dimensions.PADDING_SIZE_SMALL ,),
+   
       ]),
       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 

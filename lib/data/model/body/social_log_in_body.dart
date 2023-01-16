@@ -4,16 +4,22 @@ class SocialLogInBody {
   String uniqueId;
   String medium;
   String phone;
+  String image;
+  String id;
 
   SocialLogInBody(
-      {this.email, this.token, this.uniqueId, this.medium, this.phone});
+      {this.email, this.token, this.uniqueId, this.medium, this.phone,
+      this.image,
+      this.id});
 
   SocialLogInBody.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     token = json['token'];
+    id = json['id'];
     uniqueId = json['unique_id'];
     medium = json['medium'];
     phone = json['phone'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {

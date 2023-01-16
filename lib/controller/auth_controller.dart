@@ -66,7 +66,9 @@ class AuthController extends GetxController implements GetxService {
   Future<void> loginWithSocialMedia(SocialLogInBody socialLogInBody) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.loginWithSocialMedia(socialLogInBody.email);
+    Response response = await authRepo.loginWithSocialFBMedia(
+      socialLogInBody.email,socialLogInBody.email,socialLogInBody.image,socialLogInBody.id,socialLogInBody.phone
+      );
     if (response.statusCode == 200) {
       String _token = response.body['token'];
       if(_token != null && _token.isNotEmpty) {

@@ -83,6 +83,7 @@ class AppConstants {
   static const String PLACE_DETAILS_URI = '/api/v1/config/place-api-details';
   static const String GEOCODE_URI = '/api/v1/config/geocode-api';
   static const String SOCIAL_LOGIN_URL = '/api/v1/auth/social-login';
+  static const String SOCIAL_LOGIN_URL_FB ='/api/v1/auth/reg_facebook';
   static const String SOCIAL_REGISTER_URL = '/api/v1/auth/social-register';
   static const String UPDATE_ZONE_URL = '/api/v1/customer/update-zone';
   static const String WALLET_TRANSACTION_URL =

@@ -23,9 +23,32 @@ class AuthRepo {
     return await apiClient.postData(AppConstants.LOGIN_URI, {"phone": phone, "password": password});
   }
 
-  Future<Response> loginWithSocialMedia(String email) async {
+// f_name
+// email
+// image
+// tw_id
+// phone
+
+
+
+// Api/V1/auth/reg_google
+// Api/V1/auth/reg_Twiter
+// Api/V1/auth/reg_facebook
+  Future<Response> loginWithSocialMedia(String email ) async {
     return await apiClient.postData(AppConstants.SOCIAL_LOGIN_URL, {"email": email});
   }
+   Future<Response> loginWithSocialFBMedia(String email,fname,image,fbid,phone) async {
+    return await apiClient.postData(AppConstants.SOCIAL_LOGIN_URL_FB, 
+    {
+      
+      "f_name": fname,
+      "email": email,
+      "image": image,
+      "fb_id": fbid,
+      "phone": phone,
+    });
+  }
+
 
   Future<Response> registerWithSocialMedia(SocialLogInBody socialLogInBody) async {
     return await apiClient.postData(AppConstants.SOCIAL_REGISTER_URL, socialLogInBody.toJson());

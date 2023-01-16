@@ -273,7 +273,7 @@ SizedBox(height:10),
                             : Center(child: CircularProgressIndicator()),
                         SizedBox(height: 30),
 
-                        // SocialLoginWidget(),
+                        SocialLoginWidget(),
 
                         GuestButton(),
                       ]);
