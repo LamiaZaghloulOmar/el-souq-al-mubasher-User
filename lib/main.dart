@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-          statusBarColor: Color(0xff023560),
+          statusBarColor: Color.fromARGB(255, 255, 209, 2),
           statusBarBrightness: Brightness.dark,
         ));
         return GetBuilder<SplashController>(builder: (splashController) {

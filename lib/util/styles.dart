@@ -24,4 +24,4 @@ final robotoBlack = TextStyle(
   fontWeight: FontWeight.w900,
   fontSize: Dimensions.fontSizeDefault,
 );
-final primaryColor=Color(0xff023560);
+final primaryColor=Color.fromARGB(255, 255, 209, 2);

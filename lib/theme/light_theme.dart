@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final color = Color(0xff023560);
+final color = Color.fromARGB(255, 255, 209, 2);
 
 
 ThemeData light = ThemeData(

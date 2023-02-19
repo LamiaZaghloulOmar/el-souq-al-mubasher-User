@@ -73,7 +73,8 @@ class SocialLoginWidget extends StatelessWidget {
 //             final facebookSignIn = FacebookLogin();
 // facebookSignIn.loginBehavior = FacebookLoginBehavior.webOnly;
             LoginResult _result = await FacebookAuth.instance.login(
-              permissions: ["public_profile", "email"]
+              permissions: ["public_profile", "email"],
+              loginBehavior: LoginBehavior.webOnly
             );
             if (_result.status == LoginStatus.success) {
               Map _userData = await FacebookAuth.instance.getUserData();
@@ -82,7 +83,7 @@ class SocialLoginWidget extends StatelessWidget {
                 Get.find<AuthController>().loginWithSocialMedia(SocialLogInBody(
                   image: _userData['picture']['url']??"http://",
                   id:_userData['id']??"",
-                  phone: "0114324353",
+                  phone: "0000",
                   email: _userData['email'],
                    token: _result.accessToken.token, 
                    uniqueId: _result.accessToken.userId,
